@@ -3,6 +3,7 @@ package com.SGSJ.Saturn;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -26,11 +27,11 @@ public class StageInitializer implements ApplicationListener<SaturnUIApplication
     public void onApplicationEvent(SaturnUIApplication.StageReadyEvent stageReadyEvent) {
         try {
             Stage stage = (Stage) stageReadyEvent.getSource();
-            FXMLLoader loader = new FXMLLoader(new ClassPathResource("/scene.fxml").getURL());
+            FXMLLoader loader = new FXMLLoader(new ClassPathResource("./javafx/scene.fxml").getURL());
             loader.setControllerFactory(this.appContext::getBean);
 
             Parent rootNode = loader.load();
-            stage.setScene(new Scene(rootNode, 800, 800));
+            stage.setScene(new Scene(rootNode, 800, 800, false, SceneAntialiasing.BALANCED));
             stage.setTitle(this.appTitle);
             stage.show();
 
@@ -38,9 +39,5 @@ public class StageInitializer implements ApplicationListener<SaturnUIApplication
             throw new RuntimeException(e);
         }
 
-    }
-
-    private Object getBean(Class<?> aClass) {
-        return this.appContext.getBean(aClass);
     }
 }

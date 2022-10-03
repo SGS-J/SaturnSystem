@@ -17,7 +17,7 @@ public class SaturnUIApplication extends Application {
 
     @Override
     public void init() throws Exception {
-        appContext = SpringApplication.run(SaturnUIApplication.class);
+        appContext = SpringApplication.run(SaturnSystemApplication.class);
     }
 
     @Override
