@@ -3,18 +3,23 @@ package com.SGSJ.Saturn.model.Usuario;
 import com.SGSJ.Saturn.model.Vacante.Vacante;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long UsuarioID;
     private String UsuarioNombre;
     private String Correo;
     private String HojaVidaPath;
+    private String Estado;
     @Column(name = "Telefonos",columnDefinition = "json")
     private String Telefonos;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String UsuarioUUID;
 
     // Foreign key

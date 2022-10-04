@@ -1,18 +1,22 @@
 package com.SGSJ.Saturn.model.Empleado;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "empleado")
-public class Empleado {
+public class Empleado implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long EmpleadoID;
     private String EmpleadoNombre;
     private String Permisos;
-    private String Cargo;
-    private String EmpleadoUUID;
     private String Contraseña;
+    private String Cargo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String EmpleadoUUID;
 
     public Empleado(Long empleadoID, String empleadoNombre, String permisos, String cargo, String empleadoUUID, String contraseña) {
         EmpleadoID = empleadoID;

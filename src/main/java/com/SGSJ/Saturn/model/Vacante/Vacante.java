@@ -2,17 +2,21 @@ package com.SGSJ.Saturn.model.Vacante;
 
 import com.SGSJ.Saturn.model.Usuario.Usuario;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "vacante")
-public class Vacante {
+public class Vacante implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long VacanteID;
     private String VacanteNombre;
     private Integer Oferta;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String VacanteUUID;
 
     // Relationship with FK
