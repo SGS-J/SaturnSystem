@@ -61,4 +61,12 @@ public class Vacante implements Serializable {
     public void setVacanteUUID(String vacanteUUID) {
         VacanteUUID = vacanteUUID;
     }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }

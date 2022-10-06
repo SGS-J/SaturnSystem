@@ -18,6 +18,9 @@ public class Empleado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String EmpleadoUUID;
 
+    public Empleado() {
+    }
+
     public Empleado(Long empleadoID, String empleadoNombre, String permisos, String cargo, String empleadoUUID, String contraseña) {
         EmpleadoID = empleadoID;
         EmpleadoNombre = empleadoNombre;

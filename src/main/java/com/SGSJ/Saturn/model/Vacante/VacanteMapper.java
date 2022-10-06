@@ -11,16 +11,16 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface VacanteMapper {
     @Mappings({
-            @Mapping(source = "VacanteID", target = "vacancyId"),
-            @Mapping(source = "VacanteNombre", target = "name"),
-            @Mapping(source = "Oferta", target = "jobOffer"),
-            @Mapping(target = "VacanteUUID", ignore = true),
+            @Mapping(source = "vacancyId", target = "vacanteID"),
+            @Mapping(source = "name", target = "vacanteNombre"),
+            @Mapping(source = "jobOffer", target = "oferta"),
+            @Mapping(target = "vacanteUUID", ignore = true),
             @Mapping(target = "usuarios", ignore = true),
     })
-    Vacancy toVacancy(Vacante vacante);
-    List<Vacancy> toVacancies(List<Vacante> vacanteList);
-
-    @InheritInverseConfiguration
     Vacante toVacante(Vacancy vacancy);
     List<Vacante> toVacantes(List<Vacancy> vacancyList);
+
+    @InheritInverseConfiguration
+    Vacancy toVacancy(Vacante vacante);
+    List<Vacancy> toVacancies(List<Vacante> vacanteList);
 }

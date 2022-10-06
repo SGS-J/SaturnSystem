@@ -11,18 +11,19 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
     @Mappings({
-            @Mapping(source = "UsuarioID", target = "userId"),
-            @Mapping(source = "UsuarioNombre", target = "name"),
-            @Mapping(source = "HojaVidaPath", target = "pathToCV"),
-            @Mapping(source = "Telefonos", target = "phoneNumbers"),
-            @Mapping(source = "Estado", target = "state"),
-            @Mapping(target = "UsuarioUUID", ignore = true),
-            @Mapping(target = "UsuarioVacante", ignore = true),
+            @Mapping(target = "usuarioID", source = "userId"),
+            @Mapping(target = "usuarioNombre", source = "name"),
+            @Mapping(target = "hojaVidaPath", source = "pathToCV"),
+            @Mapping(target = "telefonos", source = "phoneNumbers"),
+            @Mapping(target = "correo", source = "email"),
+            @Mapping(target = "estado", source = "state"),
+            @Mapping(target = "usuarioUUID", ignore = true),
+            @Mapping(target = "usuarioVacante", ignore = true),
     })
-    User toUser(Usuario usuario);
-    List<User> toUsers(List<Usuario> usuarioList);
-
-    @InheritInverseConfiguration
     Usuario toUsuario(User user);
     List<Usuario> toUsuarios(List<Usuario> usuarioList);
+
+    @InheritInverseConfiguration
+    User toUser(Usuario usuario);
+    List<User> toUsers(List<Usuario> usuarioList);
 }

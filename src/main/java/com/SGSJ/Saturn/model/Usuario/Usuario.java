@@ -27,6 +27,9 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "VacanteID", insertable = false, updatable = false)
     private Vacante UsuarioVacante;
 
+    public Usuario() {
+    }
+
     public Usuario(Long usuarioID, String usuarioNombre, String correo, String hojaVidaPath, String telefonos, Vacante usuarioVacante, String usuarioUUID) {
         UsuarioID = usuarioID;
         UsuarioNombre = usuarioNombre;
@@ -67,6 +70,14 @@ public class Usuario implements Serializable {
 
     public void setHojaVidaPath(String hojaVidaPath) {
         HojaVidaPath = hojaVidaPath;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String estado) {
+        Estado = estado;
     }
 
     public String getTelefonos() {

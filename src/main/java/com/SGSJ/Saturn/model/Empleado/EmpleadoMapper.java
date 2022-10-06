@@ -11,16 +11,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmpleadoMapper {
     @Mappings({
-            @Mapping(source = "EmpleadoID", target = "employeeId"),
-            @Mapping(source = "EmpleadoNombre", target = "name"),
-            @Mapping(source = "Permisos", target = "permission"),
-            @Mapping(source = "Cargo", target = "post"),
-            @Mapping(target = "EmpleadoUUID", ignore = true)
+            @Mapping(source = "employeeId", target = "empleadoID"),
+            @Mapping(source = "name", target = "empleadoNombre"),
+            @Mapping(source = "password", target = "contraseña"),
+            @Mapping(source = "permission", target = "permisos"),
+            @Mapping(source = "post", target = "cargo"),
+            @Mapping(target = "empleadoUUID", ignore = true)
     })
-    Employee toEmployee(Empleado empleado);
-    List<Employee> toEmployees(List<Empleado> empleadoList);
-
-    @InheritInverseConfiguration
     Empleado toEmpleado(Employee employee);
     List<Empleado> toEmpleados(List<Employee> employeeList);
+
+    @InheritInverseConfiguration
+    Employee toEmployee(Empleado empleado);
+    List<Employee> toEmployees(List<Empleado> empleadoList);
 }
