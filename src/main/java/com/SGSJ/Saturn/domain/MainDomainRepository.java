@@ -7,8 +7,8 @@ import java.util.List;
 @Repository
 public interface MainDomainRepository<T> {
     List<T> getAll();
-    <Data extends T> Data getById(Long ID);
-    <Data extends T> Data add(Long ID);
-    <Data extends T> Data updateById(Long ID);
-    void deleteById(Long userId);
+    T getById(Long ID);
+    T add(Long ID);
+    T updateById(Long ID);
+    void deleteById(Long ID);
 }
