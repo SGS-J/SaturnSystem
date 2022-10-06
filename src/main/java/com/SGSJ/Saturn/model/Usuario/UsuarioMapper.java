@@ -21,7 +21,7 @@ public interface UsuarioMapper {
             @Mapping(target = "usuarioVacante", ignore = true),
     })
     Usuario toUsuario(User user);
-    List<Usuario> toUsuarios(List<Usuario> usuarioList);
+    List<Usuario> toUsuarios(List<User> usuarioList);
 
     @InheritInverseConfiguration
     User toUser(Usuario usuario);

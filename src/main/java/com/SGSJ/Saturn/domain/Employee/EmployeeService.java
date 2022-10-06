@@ -19,12 +19,12 @@ public class EmployeeService implements EmployeeRepository{
     }
 
     @Override
-    public Employee add(Long ID) {
+    public Employee add(Employee objectType) {
         return null;
     }
 
     @Override
-    public Employee updateById(Long ID) {
+    public Employee updateById(Employee objectType, Long ID) {
         return null;
     }
 

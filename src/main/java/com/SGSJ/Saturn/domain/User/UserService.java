@@ -14,12 +14,12 @@ public class UserService implements UserRepository{
     }
 
     @Override
-    public User add(Long ID) {
+    public User add(User objectType) {
         return null;
     }
 
     @Override
-    public User updateById(Long ID) {
+    public User updateById(User objectType, Long ID) {
         return null;
     }
 
