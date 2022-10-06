@@ -23,6 +23,9 @@ public class Vacante implements Serializable {
     @OneToMany(mappedBy = "UsuarioVacante", fetch = FetchType.LAZY)
     private Set<Usuario> usuarios = new HashSet<>();
 
+    public Vacante() {
+    }
+
     public Vacante(Long vacanteID, String vacanteNombre, Integer oferta, String vacanteUUID) {
         VacanteID = vacanteID;
         VacanteNombre = vacanteNombre;
