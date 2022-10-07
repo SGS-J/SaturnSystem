@@ -20,11 +20,11 @@ public class EmployeeDTO {
         return mapper.toEmployees(empleados);
     }
 
-    public Empleado toEmployee(Employee employee) {
+    public Empleado toEmpleado(Employee employee) {
         return mapper.toEmpleado(employee);
     }
 
-    public List<Empleado> toEmployee(List<Employee> employees) {
+    public List<Empleado> toEmpleados(List<Employee> employees) {
         return mapper.toEmpleados(employees);
     }
 }
