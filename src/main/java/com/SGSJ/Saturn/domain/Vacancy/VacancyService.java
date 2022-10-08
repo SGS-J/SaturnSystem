@@ -31,10 +31,10 @@ public class VacancyService implements VacancyRepository{
     public Vacancy updateById(Vacancy newVacancy, Long ID) {
         Vacancy oldVacancy = this.getById(ID);
 
-        newVacancy.setName((newVacancy.getName() == null ? oldVacancy : newVacancy).getName());
-        newVacancy.setJobOffer((newVacancy.getJobOffer() == null ? oldVacancy : newVacancy).getJobOffer());
+        oldVacancy.setName((newVacancy.getName() == null ? oldVacancy : newVacancy).getName());
+        oldVacancy.setJobOffer((newVacancy.getJobOffer() == null ? oldVacancy : newVacancy).getJobOffer());
 
-        return vacancyDTO.toVacancy(vacanteCrud.save(vacancyDTO.toVacante(newVacancy)));
+        return vacancyDTO.toVacancy(vacanteCrud.save(vacancyDTO.toVacante(oldVacancy)));
     }
 
     @Override

@@ -31,12 +31,12 @@ public class UserService implements UserRepository{
     public User updateById(User newUser, Long ID) {
         User oldUser = this.getById(ID);
 
-        newUser.setName((newUser.getName() == null ? oldUser : newUser).getName());
-        newUser.setEmail((newUser.getEmail() == null ? oldUser : newUser).getEmail());
-        newUser.setPathToCV((newUser.getPathToCV() == null ? oldUser : newUser).getPathToCV());
-        newUser.setPhoneNumbers((newUser.getPhoneNumbers() == null ? oldUser : newUser).getPhoneNumbers());
+        oldUser.setName((newUser.getName() == null ? oldUser : newUser).getName());
+        oldUser.setEmail((newUser.getEmail() == null ? oldUser : newUser).getEmail());
+        oldUser.setPathToCV((newUser.getPathToCV() == null ? oldUser : newUser).getPathToCV());
+        oldUser.setPhoneNumbers((newUser.getPhoneNumbers() == null ? oldUser : newUser).getPhoneNumbers());
 
-        return userDTO.toUser(usuarioCrud.save(userDTO.toUsuario(newUser)));
+        return userDTO.toUser(usuarioCrud.save(userDTO.toUsuario(oldUser)));
     }
 
     @Override
