@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class StageInitializer implements ApplicationListener<SaturnUIApplication.StageReadyEvent> {
+public class StageInitializer implements ApplicationListener<SaturnSystemApplication.StageReadyEvent> {
     private ApplicationContext appContext;
     private String appTitle;
 
@@ -24,7 +24,7 @@ public class StageInitializer implements ApplicationListener<SaturnUIApplication
     }
 
     @Override
-    public void onApplicationEvent(SaturnUIApplication.StageReadyEvent stageReadyEvent) {
+    public void onApplicationEvent(SaturnSystemApplication.StageReadyEvent stageReadyEvent) {
         try {
             Stage stage = (Stage) stageReadyEvent.getSource();
             FXMLLoader loader = new FXMLLoader(new ClassPathResource("./javafx/scene.fxml").getURL());

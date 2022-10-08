@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.SGSJ.Saturn.SaturnMainController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.SaturnMainController">
+   <children>
+      <TextField layoutX="61.0" layoutY="49.0" />
+      <Button layoutX="110.0" layoutY="247.0" mnemonicParsing="false" text="submit" />
+      <TextField layoutX="61.0" layoutY="94.0" />
+      <TextField layoutX="61.0" layoutY="136.0" />
+      <TextField layoutX="61.0" layoutY="187.0" />
+   </children>
 </AnchorPane>

@@ -3,9 +3,11 @@ package com.SGSJ.Saturn.domain.Vacancy;
 import com.SGSJ.Saturn.model.Vacante.Vacante;
 import com.SGSJ.Saturn.model.Vacante.VacanteCrud;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VacancyService implements VacancyRepository{
     @Autowired
     private VacancyDTO vacancyDTO;

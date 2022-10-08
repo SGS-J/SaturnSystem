@@ -4,9 +4,11 @@ import com.SGSJ.Saturn.model.Empleado.Empleado;
 import com.SGSJ.Saturn.model.Empleado.EmpleadoCrud;
 import com.SGSJ.Saturn.security.PasswordCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EmployeeService implements EmployeeRepository{
     @Autowired
     private EmployeeDTO employeeDTO;
@@ -20,6 +22,15 @@ public class EmployeeService implements EmployeeRepository{
     }
 
     @Override
+    public Employee logIn() {
+        return null;
+    }
+
+    @Override
+    public void logOut() {
+    }
+
+    @Override
     public List<Employee> getAll() {
         return employeeDTO.toEmployees((List<Empleado>) empleadoCrud.findAll());
     }
@@ -30,7 +41,7 @@ public class EmployeeService implements EmployeeRepository{
     }
 
     @Override
-    synchronized public Employee add(Employee newEmployee) {
+    synchronized public Employee add(Employee newEmployee) throws AssertionError{
         String salt = PasswordCrypt.getSalt(10);
         String hash = PasswordCrypt.generateSecurePassword(newEmployee.getPassword(), salt);
         newEmployee.setPassword(hash);
@@ -38,7 +49,7 @@ public class EmployeeService implements EmployeeRepository{
     }
 
     @Override
-    synchronized public Employee updateById(Employee newEmployee, Long ID) {
+    synchronized public Employee updateById(Employee newEmployee, Long ID) throws AssertionError{
         Employee oldEmployee = this.getById(ID);
         String permission = (newEmployee.getPermission() == null ? oldEmployee : newEmployee).getPermission();
 

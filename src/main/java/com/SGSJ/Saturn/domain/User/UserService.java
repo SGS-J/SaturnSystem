@@ -3,9 +3,11 @@ package com.SGSJ.Saturn.domain.User;
 import com.SGSJ.Saturn.model.Usuario.Usuario;
 import com.SGSJ.Saturn.model.Usuario.UsuarioCrud;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserService implements UserRepository{
     @Autowired
     private UserDTO userDTO;
@@ -45,8 +47,8 @@ public class UserService implements UserRepository{
     }
 
     @Override
-    public void updateState(String state, Long userId) {
-        usuarioCrud.updateUsuarioState(userId, state);
+    public void updateState(UserState state, Long userId) {
+        usuarioCrud.updateUsuarioState(userId, state.toString());
     }
 
     @Override
