@@ -1,10 +1,7 @@
 package com.SGSJ.Saturn.model.Empleado;
 
 import com.SGSJ.Saturn.domain.Employee.Employee;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.util.List;
 

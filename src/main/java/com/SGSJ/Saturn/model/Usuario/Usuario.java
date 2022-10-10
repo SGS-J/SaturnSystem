@@ -13,8 +13,10 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long UsuarioID;
+    @Column(name = "usuarionombre")
     private String UsuarioNombre;
     private String Correo;
+    @Column(name = "hojavidapath")
     private String HojaVidaPath;
     private String Estado;
     @Column(name = "Telefonos",columnDefinition = "json")

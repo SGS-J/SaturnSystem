@@ -1,5 +1,8 @@
 package com.SGSJ.Saturn.domain.Employee;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Employee {
     private Long employeeId;
     private String name;

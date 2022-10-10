@@ -11,6 +11,7 @@ public class Empleado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long EmpleadoID;
+    @Column(name = "empleadonombre")
     private String EmpleadoNombre;
     private String Permisos;
     private String Contraseña;

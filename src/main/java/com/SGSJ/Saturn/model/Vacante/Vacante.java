@@ -14,6 +14,7 @@ public class Vacante implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long VacanteID;
+    @Column(name = "vacantenombre")
     private String VacanteNombre;
     private Integer Oferta;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
