@@ -18,6 +18,9 @@ public class StageInitializer implements ApplicationListener<SaturnSystemApplica
     private ApplicationContext appContext;
     private String appTitle;
 
+    private final int HEIGHT = 700;
+    private final int WIDTH = 1000;
+
     public StageInitializer(ApplicationContext appContext, @Value("${spring.application.ui.title}") String appTitle) {
         this.appContext = appContext;
         this.appTitle = appTitle;
@@ -31,7 +34,7 @@ public class StageInitializer implements ApplicationListener<SaturnSystemApplica
             loader.setControllerFactory(this.appContext::getBean);
 
             Parent rootNode = loader.load();
-            stage.setScene(new Scene(rootNode, 800, 800, false, SceneAntialiasing.BALANCED));
+            stage.setScene(new Scene(rootNode, WIDTH, HEIGHT, false, SceneAntialiasing.BALANCED));
             stage.setTitle(this.appTitle);
             stage.show();
 
