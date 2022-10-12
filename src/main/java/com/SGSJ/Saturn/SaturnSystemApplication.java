@@ -6,16 +6,14 @@ import com.SGSJ.Saturn.view.SaturnView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
 public class SaturnSystemApplication extends Application {
-    private StageManager stageManager;
-    @Value("${spring.application.ui.title}")
-    private String appTitle;
+    private static StageManager stageManager;
+    private final String appTitle = "Saturn";
     private final int HEIGHT = 700;
     private final int WIDTH = 1000;
     private ConfigurableApplicationContext appContext;
@@ -25,9 +23,10 @@ public class SaturnSystemApplication extends Application {
         try {
             primaryStage.setHeight(HEIGHT);
             primaryStage.setWidth(WIDTH);
+            primaryStage.setTitle(appTitle);
 
             stageManager = new StageManager(primaryStage, new SaturnFXMLLoader(appContext));
-            stageManager.switchScene(SaturnView.LOG_IN, appTitle);
+            stageManager.switchScene(SaturnView.LOG_IN);
         } catch (IOException exception){
             throw new RuntimeException();
         }
@@ -44,5 +43,9 @@ public class SaturnSystemApplication extends Application {
     public void stop() throws Exception {
         appContext.close();
         Platform.exit();
+    }
+
+    public static StageManager getStageManager() {
+        return stageManager;
     }
 }

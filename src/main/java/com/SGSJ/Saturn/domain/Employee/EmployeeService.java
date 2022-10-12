@@ -22,7 +22,7 @@ public class EmployeeService implements EmployeeRepository{
     }
 
     @Override
-    public Employee logIn() {
+    public Employee logIn(String username, String password) {
         return null;
     }
 

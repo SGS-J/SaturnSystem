@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends GenericRepository<Employee, Long> {
     void setPermissionById(String permission, Long employeeId);
-    Employee logIn();
+    Employee logIn(String username, String password);
     void logOut();
 }
