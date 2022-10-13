@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 
     // Foreign key
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VacanteID", insertable = false, updatable = false)
+    @JoinColumn(name = "usuariovacante", insertable = false, updatable = false)
     private Vacante UsuarioVacante;
 
     public Usuario() {

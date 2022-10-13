@@ -60,8 +60,9 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    void handleRegister() {
+    void handleRegister() throws IOException {
         employeeService.add(employee);
+        SaturnSystemApplication.getStageManager().switchScene(SaturnView.LOG_IN);
     }
 
     @FXML
