@@ -23,7 +23,16 @@ public class EmployeeService implements EmployeeRepository{
 
     @Override
     public Employee logIn(String username, String password) {
-        return null;
+        try {
+            Empleado empleadoToLogIn = empleadoCrud.getEmpleadoByNombre(username);
+            boolean isPasswordCorrect = PasswordCrypt.verifyPassword(password, empleadoToLogIn.getContraseña(), empleadoToLogIn.getContraseñaSalt());
+
+            if(isPasswordCorrect) return employeeDTO.toEmployee(empleadoToLogIn);
+
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            return null;
+        }
     }
 
     @Override
@@ -45,6 +54,8 @@ public class EmployeeService implements EmployeeRepository{
         String salt = PasswordCrypt.getSalt(10);
         String hash = PasswordCrypt.generateSecurePassword(newEmployee.getPassword(), salt);
         newEmployee.setPassword(hash);
+        newEmployee.setPasswordSalt(salt);
+        newEmployee.setPermission("ADMIN");
         return employeeDTO.toEmployee(empleadoCrud.save(employeeDTO.toEmpleado(newEmployee)));
     }
 

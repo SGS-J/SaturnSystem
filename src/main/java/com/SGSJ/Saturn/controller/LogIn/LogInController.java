@@ -2,6 +2,8 @@ package com.SGSJ.Saturn.controller.LogIn;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.StageManager;
+import com.SGSJ.Saturn.domain.Employee.Employee;
+import com.SGSJ.Saturn.domain.Employee.EmployeeService;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,6 +34,8 @@ public class LogInController implements Initializable {
 
     private String employeeName;
     private String employeePassword;
+    @Autowired
+    private EmployeeService employeeService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,8 +50,11 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void handleLogIn() {
-
+    void handleLogIn() throws IOException {
+        Employee employeeLogged = employeeService.logIn(employeeName, employeePassword);
+        if(employeeLogged != null) {
+           SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
+        }
     }
 
     @FXML

@@ -8,6 +8,7 @@ public class Employee {
     private String name;
     private String permission;
     private String password;
+    private String passwordSalt;
     private String post;
 
     public Long getEmployeeId() {
@@ -40,6 +41,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
     }
 
     public String getPost() {

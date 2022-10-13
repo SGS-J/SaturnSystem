@@ -15,6 +15,8 @@ public class Empleado implements Serializable {
     private String EmpleadoNombre;
     private String Permisos;
     private String Contraseña;
+    @Column(name = "contraseñasalt")
+    private String ContraseñaSalt;
     private String Cargo;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String EmpleadoUUID;
@@ -22,21 +24,23 @@ public class Empleado implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(Long empleadoID, String empleadoNombre, String permisos, String cargo, String empleadoUUID, String contraseña) {
+    public Empleado(Long empleadoID, String empleadoNombre, String permisos, String cargo, String empleadoUUID, String contraseña, String contraseñaSalt) {
         EmpleadoID = empleadoID;
         EmpleadoNombre = empleadoNombre;
         Permisos = permisos;
         Cargo = cargo;
         EmpleadoUUID = empleadoUUID;
         Contraseña = contraseña;
+        ContraseñaSalt = contraseñaSalt;
     }
 
-    public Empleado(Long empleadoID, String empleadoNombre, String permisos, String empleadoUUID, String contraseña) {
+    public Empleado(Long empleadoID, String empleadoNombre, String permisos, String empleadoUUID, String contraseña, String contraseñaSalt) {
         EmpleadoID = empleadoID;
         EmpleadoNombre = empleadoNombre;
         Permisos = permisos;
         EmpleadoUUID = empleadoUUID;
         Contraseña = contraseña;
+        ContraseñaSalt = contraseñaSalt;
     }
 
     public Long getEmpleadoID() {
@@ -85,5 +89,13 @@ public class Empleado implements Serializable {
 
     public void setContraseña(String contraseña) {
         Contraseña = contraseña;
+    }
+
+    public String getContraseñaSalt() {
+        return ContraseñaSalt;
+    }
+
+    public void setContraseñaSalt(String contraseñaSalt) {
+        ContraseñaSalt = contraseñaSalt;
     }
 }

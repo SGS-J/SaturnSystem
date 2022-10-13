@@ -25,16 +25,16 @@ public enum SaturnView {
             return "./javafx/vacancy_detail.fxml";
         }
     },
-    USER_MAIN {
+    APPLICANT_MAIN {
         @Override
         public String getSaturnViewPath() {
-            return "./javafx/user_main.fxml";
+            return "./javafx/applicant_main.fxml";
         }
     },
-    USER_DETAIL {
+    APPLICANT_DETAIL {
         @Override
         public String getSaturnViewPath() {
-            return "./javafx/user_detail.fxml";
+            return "./javafx/applicant_detail.fxml";
         }
     };
     public abstract String getSaturnViewPath();

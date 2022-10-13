@@ -11,6 +11,7 @@ public interface EmpleadoMapper {
             @Mapping(source = "employeeId", target = "empleadoID"),
             @Mapping(source = "name", target = "empleadoNombre"),
             @Mapping(source = "password", target = "contraseña"),
+            @Mapping(source = "passwordSalt", target = "contraseñaSalt"),
             @Mapping(source = "permission", target = "permisos"),
             @Mapping(source = "post", target = "cargo"),
             @Mapping(target = "empleadoUUID", ignore = true)
