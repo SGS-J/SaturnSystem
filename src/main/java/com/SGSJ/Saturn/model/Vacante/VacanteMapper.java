@@ -14,7 +14,7 @@ public interface VacanteMapper {
             @Mapping(source = "vacancyId", target = "vacanteID"),
             @Mapping(source = "name", target = "vacanteNombre"),
             @Mapping(source = "jobOffer", target = "oferta"),
-            @Mapping(target = "vacanteUUID", ignore = true),
+            @Mapping(source = "vacancyUUID", target = "vacanteUUID"),
             @Mapping(target = "usuarios", ignore = true),
     })
     Vacante toVacante(Vacancy vacancy);

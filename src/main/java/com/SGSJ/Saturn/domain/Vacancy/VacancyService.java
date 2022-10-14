@@ -30,7 +30,7 @@ public class VacancyService implements VacancyRepository{
     }
 
     @Override
-    public Vacancy updateById(Vacancy newVacancy, Long ID) {
+    synchronized public Vacancy updateById(Vacancy newVacancy, Long ID) {
         Vacancy oldVacancy = this.getById(ID);
 
         oldVacancy.setName((newVacancy.getName() == null ? oldVacancy : newVacancy).getName());
