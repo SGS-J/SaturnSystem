@@ -11,13 +11,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.controller.ApplicantMain.ApplicantMainController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="toApplicantSceneBtn" minHeight="50.0" mnemonicParsing="false" text="POSTULANTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="toVacancySceneBtn" layoutY="50.0" minHeight="50.0" mnemonicParsing="false" text="VACANTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="toApplicantSceneBtn" minHeight="50.0" mnemonicParsing="false" onAction="#handleSceneChangeButtonPressed" text="POSTULANTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="toVacancySceneBtn" layoutY="50.0" minHeight="50.0" mnemonicParsing="false" onAction="#handleSceneChangeButtonPressed" text="VACANTES" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </left>
