@@ -4,6 +4,7 @@ import com.SGSJ.Saturn.view.SaturnView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 

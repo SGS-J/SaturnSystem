@@ -3,6 +3,8 @@ package com.SGSJ.Saturn.model.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.sql.ResultSet;
+
 public interface UsuarioCrud extends CrudRepository<Usuario, Long> {
     @Query(value = "CALL crear_usuario(?1, ?2, ?3, ?4)", nativeQuery = true)
     Usuario createUsuario(String nombre, String correo, String hojaVida, String telefonos);

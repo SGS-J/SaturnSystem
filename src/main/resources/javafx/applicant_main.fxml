@@ -40,7 +40,7 @@
             </HBox>
          </top>
          <center>
-            <TableView fx:id="applicantTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="applicantTable" onMouseClicked="#handleClickCell" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="NOMBRE" />
