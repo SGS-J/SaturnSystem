@@ -5,7 +5,6 @@ import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.springframework.stereotype.Component;
 
 // Wraps User properties to observable values for javafx TableViews
 public class UserProperty {

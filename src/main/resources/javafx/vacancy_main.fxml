@@ -3,12 +3,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.controller.VacancyMain.VacancyMainController">
     <left>
@@ -22,13 +23,24 @@
     <center>
         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                     <padding>
                         <Insets left="30.0" />
                     </padding>
                <children>
-                  <Label text="Oferta:" />
-                  <Spinner fx:id="jobOfferSpinner" prefHeight="26.0" prefWidth="89.0" />
+                  <Label text="Oferta" />
+                  <Label text="0">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                     <children>
+                        <Slider fx:id="jobOfferSlider" blockIncrement="1.0" />
+                        <Label fx:id="amountOfferLabel" alignment="CENTER" contentDisplay="CENTER" text="0" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+                  <Label text="100" />
                </children>
                 </HBox>
             </top>
