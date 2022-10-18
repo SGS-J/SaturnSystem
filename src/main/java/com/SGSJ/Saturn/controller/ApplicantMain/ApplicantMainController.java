@@ -9,19 +9,15 @@ import com.SGSJ.Saturn.view.SaturnView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 
 @Controller
@@ -75,7 +71,22 @@ public class ApplicantMainController extends SidePanelController {
     }
 
     @FXML
-    void handleRadioToggled(ActionEvent event) {
+    void handleTogglePressed() {
+        ArrayList<UserProperty> filterList = new ArrayList<>();
+
+        if(aceptadoRadioBtn.isSelected()) {
+             filterList.addAll(userData.filtered(userProperty -> userProperty.getState().equals("ACEPTADO")));
+        }
+
+        if(rechazadoRadioBtn.isSelected()) {
+            filterList.addAll(userData.filtered(userProperty -> userProperty.getState().equals("RECHAZADO")));
+        }
+
+        if(enEsperaRadioBtn.isSelected()) {
+            filterList.addAll(userData.filtered(userProperty -> userProperty.getState().equals("EN_ESPERA")));
+        }
+
+        applicantTable.setItems(FXCollections.observableArrayList(filterList));
     }
 
     @FXML

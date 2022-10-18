@@ -30,9 +30,9 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="enEsperaRadioBtn" mnemonicParsing="false" onAction="#handleRadioToggled" selected="true" text="En Espera" />
-                  <RadioButton fx:id="aceptadoRadioBtn" mnemonicParsing="false" onAction="#handleRadioToggled" selected="true" text="Aceptado" />
-                  <RadioButton fx:id="rechazadoRadioBtn" mnemonicParsing="false" onAction="#handleRadioToggled" selected="true" text="Rechazado" />
+                  <RadioButton fx:id="enEsperaRadioBtn" mnemonicParsing="false" onAction="#handleTogglePressed" selected="true" text="En Espera" />
+                  <RadioButton fx:id="aceptadoRadioBtn" mnemonicParsing="false" onAction="#handleTogglePressed" selected="true" text="Aceptado" />
+                  <RadioButton fx:id="rechazadoRadioBtn" mnemonicParsing="false" onAction="#handleTogglePressed" selected="true" text="Rechazado" />
                </children>
                <padding>
                   <Insets left="30.0" />
