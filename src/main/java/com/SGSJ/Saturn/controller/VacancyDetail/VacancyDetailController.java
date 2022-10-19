@@ -1,17 +1,22 @@
 package com.SGSJ.Saturn.controller.VacancyDetail;
 
+import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.DataHolder;
 import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.VacancyMain.VacancyProperty;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
+import com.SGSJ.Saturn.view.SaturnView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +25,9 @@ public class VacancyDetailController extends GenericController {
 
     @FXML
     private Button editBtn;
+
+    @FXML
+    private Button deleteVacancyBtn;
 
     @FXML
     private Button dismissBtn;
@@ -47,6 +55,11 @@ public class VacancyDetailController extends GenericController {
 
         nameField.setText(name);
         jobOfferField.setText(Integer.toString(jobOffer));
+        jobOfferField.setTextFormatter(new TextFormatter<String>(change -> {
+            String text = change.getControlNewText();
+            if(!text.isEmpty() && text.matches("[0-9]*")) return change;
+            return null;
+        }));
 
         vacancy.setVacancyId(vacancyProperty.getId());
         vacancy.setName(name);
@@ -54,16 +67,26 @@ public class VacancyDetailController extends GenericController {
     }
 
     @FXML
-    void handleTextChanged() {
+    void handleTextChanged(KeyEvent event) {
         vacancy.setName(nameField.getText());
         vacancy.setJobOffer(Integer.valueOf(jobOfferField.getText()));
     }
 
     @FXML
-    void handleEditVacancy(ActionEvent event) {
+    void handleButtonPressed(ActionEvent event) throws IOException {
         Button btnPressed = (Button) event.getSource();
         String btnPressedId = btnPressed.getId();
 
+        if(btnPressedId.equals("deleteVacancyBtn")) {
+            vacancyService.deleteById(vacancy.getVacancyId());
+            SaturnSystemApplication.getStageManager().switchScene(SaturnView.VACANCY_MAIN);
+        } else {
+            handleEditButtonPressed(btnPressedId);
+        }
+
+    }
+
+    private void handleEditButtonPressed(String btnPressedId) {
         isEditingFields = !isEditingFields;
         nameField.setEditable(isEditingFields);
         jobOfferField.setEditable(isEditingFields);

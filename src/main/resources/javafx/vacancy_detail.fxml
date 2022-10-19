@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -43,7 +44,7 @@
                <children>
                   <Label text="Nombre Vacante">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
@@ -51,7 +52,7 @@
                   </Label>
                   <Label text="Oferta" GridPane.rowIndex="1">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -59,16 +60,21 @@
                   </Label>
                   <TextField fx:id="nameField" editable="false" onKeyTyped="#handleTextChanged" prefHeight="26.0" prefWidth="121.0" GridPane.columnIndex="1" />
                   <TextField fx:id="jobOfferField" editable="false" onKeyTyped="#handleTextChanged" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handleEditVacancy" prefHeight="34.0" text="Editar" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#handleButtonPressed" prefHeight="34.0" text="Editar" GridPane.columnIndex="2" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="dismissBtn" mnemonicParsing="false" onAction="#handleEditVacancy" prefHeight="34.0" text="Descartar" visible="false" GridPane.columnIndex="3" GridPane.rowSpan="2">
+                  <Button fx:id="dismissBtn" mnemonicParsing="false" onAction="#handleButtonPressed" prefHeight="34.0" text="Descartar" visible="false" GridPane.columnIndex="3" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Button fx:id="deleteVacancyBtn" mnemonicParsing="false" onAction="#handleButtonPressed" text="Eliminar Vacante" />
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>

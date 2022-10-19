@@ -4,6 +4,7 @@ import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.DataHolder;
 import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.VacancyMain.config.VacancyMainConfiguration;
+import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.collections.FXCollections;
@@ -39,6 +40,9 @@ public class VacancyMainController extends GenericController {
     @FXML
     private Label amountOfferLabel;
 
+    @FXML
+    private Button vacancyNewBtn;
+
     private ObservableList<VacancyProperty> vacancyData = FXCollections.observableArrayList();
     @Autowired
     private VacancyMainConfiguration initConfiguration;
@@ -64,6 +68,15 @@ public class VacancyMainController extends GenericController {
             bindData.setObject(selectedItem);
             SaturnSystemApplication.getStageManager().switchScene(SaturnView.VACANCY_DETAIL);
         }
+    }
+
+    @FXML
+    synchronized void handleNewVacancy() throws IOException {
+        SaturnSystemApplication.getStageManager().showDialogModal(SaturnView.VACANCY_DIALOG_CREATE, "Crear Vacante");
+        DataHolder<Vacancy> boundData = DataHolder.getInstance();
+        Vacancy vacancy = boundData.getObject();
+        vacancyData.add(new VacancyProperty(vacancy));
+        vacancyService.add(vacancy);
     }
 
     public TableView<VacancyProperty> getVacancyTable() {

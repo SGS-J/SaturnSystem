@@ -27,6 +27,12 @@ public enum SaturnView {
             return "./javafx/vacancy_main.fxml";
         }
     },
+    VACANCY_DIALOG_CREATE {
+        @Override
+        public String getSaturnViewPath() {
+            return "./javafx/dialog_create_vacancy.fxml";
+        }
+    },
     VACANCY_DETAIL {
         @Override
         public String getSaturnViewPath() {

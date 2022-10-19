@@ -3,6 +3,7 @@ package com.SGSJ.Saturn.config;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,11 +11,27 @@ import java.io.IOException;
 
 public class StageManager {
     private final Stage primaryStage;
+    private Stage dialogStage;
     private static SaturnFXMLLoader FXMLLoader;
 
     public StageManager(Stage primaryStage, SaturnFXMLLoader FXMLLoader) {
         this.primaryStage = primaryStage;
-        this.FXMLLoader = FXMLLoader;
+        StageManager.FXMLLoader = FXMLLoader;
+    }
+
+    public void showDialogModal(final SaturnView view, String title) throws IOException {
+        Parent rootNode = FXMLLoader.loadFXML(view.getSaturnViewPath());
+        Scene scene = new Scene(rootNode);
+        dialogStage = new Stage();
+        dialogStage.setTitle(title);
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(this.primaryStage);
+        dialogStage.setScene(scene);
+        dialogStage.showAndWait();
+    }
+
+    public void closeDialogModal() {
+        dialogStage.close();
     }
 
     public void switchScene(final SaturnView view) throws IOException {
