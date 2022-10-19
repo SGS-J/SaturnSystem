@@ -1,15 +1,23 @@
 package com.SGSJ.Saturn.view;
 
+import com.SGSJ.Saturn.SaturnSystemApplication;
+
 public enum SaturnView {
     REGISTER {
         @Override
         public String getSaturnViewPath() {
+            if(SaturnSystemApplication.isUserLogged()) {
+                return "./javafx/applicant_main.fxml";
+            }
             return "./javafx/register.fxml";
         }
     },
     LOG_IN {
         @Override
         public String getSaturnViewPath() {
+            if(SaturnSystemApplication.isUserLogged()) {
+                return "./javafx/applicant_main.fxml";
+            }
             return "./javafx/log_in.fxml";
         }
     },

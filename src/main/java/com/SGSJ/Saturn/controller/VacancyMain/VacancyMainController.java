@@ -2,7 +2,7 @@ package com.SGSJ.Saturn.controller.VacancyMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.DataHolder;
-import com.SGSJ.Saturn.controller.SidePanelController;
+import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.VacancyMain.config.VacancyMainConfiguration;
 import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
 import com.SGSJ.Saturn.view.SaturnView;
@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
-public class VacancyMainController extends SidePanelController {
+public class VacancyMainController extends GenericController {
 
     @FXML
     private TableView<VacancyProperty> vacancyTable;

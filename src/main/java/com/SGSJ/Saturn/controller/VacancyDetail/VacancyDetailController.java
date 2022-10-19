@@ -1,7 +1,7 @@
 package com.SGSJ.Saturn.controller.VacancyDetail;
 
 import com.SGSJ.Saturn.config.DataHolder;
-import com.SGSJ.Saturn.controller.SidePanelController;
+import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.VacancyMain.VacancyProperty;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
-public class VacancyDetailController extends SidePanelController {
+public class VacancyDetailController extends GenericController {
 
     @FXML
     private Button editBtn;

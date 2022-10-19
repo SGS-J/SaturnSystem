@@ -1,15 +1,14 @@
 package com.SGSJ.Saturn.controller.Register;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
+import com.SGSJ.Saturn.controller.Register.util.RegisterVerificator;
 import com.SGSJ.Saturn.domain.Employee.Employee;
 import com.SGSJ.Saturn.domain.Employee.EmployeeService;
+import com.SGSJ.Saturn.exceptions.InvalidRegisterDataException;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -37,6 +36,9 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField usernameField;
 
+    @FXML
+    private Label passwordValidLabel;
+
     private String confirmationPassword;
     @Autowired
     private Employee employee;
@@ -49,6 +51,9 @@ public class RegisterController implements Initializable {
         employee.setPassword(passwordField.getText());
         employee.setPost(postField.getText());
         confirmationPassword = confirmPasswordField.getText();
+        passwordField.focusedProperty().addListener(((observable, oldValue, fieldFocused) -> {
+            passwordValidLabel.setVisible(fieldFocused);
+        }));
     }
 
     @FXML
@@ -60,9 +65,19 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    void handleRegister() throws IOException {
-        employeeService.add(employee);
-        SaturnSystemApplication.getStageManager().switchScene(SaturnView.LOG_IN);
+    synchronized void handleRegister() throws IOException {
+        try {
+            RegisterVerificator.verifyEmptyFields(this.employee);
+            RegisterVerificator.verifyPassword(employee.getPassword(), this.confirmationPassword);
+            employeeService.add(employee);
+            SaturnSystemApplication.getStageManager().switchScene(SaturnView.LOG_IN);
+        } catch(InvalidRegisterDataException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle(e.getDialogErrorTitle());
+            alert.setHeaderText(null);
+            alert.setContentText(e.getPasswordErrorMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML

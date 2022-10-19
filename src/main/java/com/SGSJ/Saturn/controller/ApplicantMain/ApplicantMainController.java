@@ -2,7 +2,7 @@ package com.SGSJ.Saturn.controller.ApplicantMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.DataHolder;
-import com.SGSJ.Saturn.controller.SidePanelController;
+import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.ApplicantMain.config.ApplicantMainConfiguration;
 import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.view.SaturnView;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 
 @Controller
-public class ApplicantMainController extends SidePanelController {
+public class ApplicantMainController extends GenericController {
     @FXML
     private RadioButton aceptadoRadioBtn;
 

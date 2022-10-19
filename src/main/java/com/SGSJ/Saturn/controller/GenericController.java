@@ -1,6 +1,7 @@
 package com.SGSJ.Saturn.controller;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
+import com.SGSJ.Saturn.security.LoginInfo;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,12 +14,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
-public abstract class SidePanelController implements Initializable {
+public abstract class GenericController implements Initializable {
     @FXML
     protected Button toApplicantSceneBtn;
 
     @FXML
     protected Button toVacancySceneBtn;
+
+    @FXML
+    protected Button logOutBtn;
 
     @Override
     public abstract void initialize(URL location, ResourceBundle resources);
@@ -32,5 +36,11 @@ public abstract class SidePanelController implements Initializable {
         } else {
             SaturnSystemApplication.getStageManager().switchScene(SaturnView.VACANCY_MAIN);
         }
+    }
+
+    @FXML
+    protected void handleLogOut() throws IOException {
+        SaturnSystemApplication.setUserLogged(LoginInfo.NOT_LOGGED);
+        SaturnSystemApplication.getStageManager().switchScene(SaturnView.LOG_IN);
     }
 }

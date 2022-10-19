@@ -83,5 +83,6 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </FlowPane>
+      <Label fx:id="passwordValidLabel" layoutX="600.0" layoutY="269.0" prefHeight="66.0" prefWidth="163.0" text="La contraseña debe tener un mínimo de 8 caracteres y al menos un caracter númerico." textAlignment="JUSTIFY" visible="false" wrapText="true" />
    </children>
 </AnchorPane>

@@ -3,7 +3,7 @@ package com.SGSJ.Saturn.controller.ApplicantDetail;
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.config.DataHolder;
 import com.SGSJ.Saturn.controller.ApplicantMain.UserProperty;
-import com.SGSJ.Saturn.controller.SidePanelController;
+import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.domain.User.UserState;
 import com.SGSJ.Saturn.view.SaturnView;
@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -20,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Controller
-public class ApplicantDetailController extends SidePanelController {
+public class ApplicantDetailController extends GenericController {
     @FXML
     private Button acceptBtn;
 

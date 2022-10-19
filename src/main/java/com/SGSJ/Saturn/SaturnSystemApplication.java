@@ -2,6 +2,7 @@ package com.SGSJ.Saturn;
 
 import com.SGSJ.Saturn.config.SaturnFXMLLoader;
 import com.SGSJ.Saturn.config.StageManager;
+import com.SGSJ.Saturn.security.LoginInfo;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,7 +14,8 @@ import java.io.IOException;
 
 public class SaturnSystemApplication extends Application {
     private static StageManager stageManager;
-    private final String appTitle = "Saturn";
+    private static LoginInfo userLogged = LoginInfo.NOT_LOGGED;
+    private final String APP_TITLE = "Saturn";
     private final int HEIGHT = 700;
     private final int WIDTH = 1000;
     private ConfigurableApplicationContext appContext;
@@ -23,10 +25,15 @@ public class SaturnSystemApplication extends Application {
         try {
             primaryStage.setHeight(HEIGHT);
             primaryStage.setWidth(WIDTH);
-            primaryStage.setTitle(appTitle);
+            primaryStage.setTitle(APP_TITLE);
 
             stageManager = new StageManager(primaryStage, new SaturnFXMLLoader(appContext));
-            stageManager.switchScene(SaturnView.LOG_IN);
+
+            if(isUserLogged()) {
+                stageManager.switchScene(SaturnView.APPLICANT_MAIN);
+            } else {
+                stageManager.switchScene(SaturnView.LOG_IN);
+            }
         } catch (IOException exception){
             throw new RuntimeException();
         }
@@ -47,5 +54,17 @@ public class SaturnSystemApplication extends Application {
 
     public static StageManager getStageManager() {
         return stageManager;
+    }
+
+    public static LoginInfo getUserLogged() {
+        return userLogged;
+    }
+
+    public static boolean isUserLogged() {
+        return userLogged.equals(LoginInfo.LOGGED);
+    }
+
+    public static void setUserLogged(LoginInfo userLogged) {
+        SaturnSystemApplication.userLogged = userLogged;
     }
 }

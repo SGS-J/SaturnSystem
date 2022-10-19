@@ -53,4 +53,7 @@
          </center>
       </BorderPane>
    </center>
+   <top>
+      <Button fx:id="logOutBtn" mnemonicParsing="false" onAction="#handleLogOut" text="Cerrar Sesión" BorderPane.alignment="TOP_RIGHT" />
+   </top>
 </BorderPane>

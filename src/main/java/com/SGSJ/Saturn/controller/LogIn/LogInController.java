@@ -1,16 +1,13 @@
 package com.SGSJ.Saturn.controller.LogIn;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.config.StageManager;
 import com.SGSJ.Saturn.domain.Employee.Employee;
 import com.SGSJ.Saturn.domain.Employee.EmployeeService;
+import com.SGSJ.Saturn.exceptions.InvalidLogInException;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -51,9 +48,16 @@ public class LogInController implements Initializable {
 
     @FXML
     void handleLogIn() throws IOException {
-        Employee employeeLogged = employeeService.logIn(employeeName, employeePassword);
-        if(employeeLogged != null) {
-           SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
+        try {
+            Employee employeeLogged = employeeService.logIn(employeeName, employeePassword);
+            if(employeeLogged == null) throw new InvalidLogInException();
+            SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
+        } catch (InvalidLogInException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(e.getDialogErrorTitle());
+            alert.setHeaderText(null);
+            alert.setContentText(e.getInvalidDataErrorMessage());
+            alert.showAndWait();
         }
     }
 
