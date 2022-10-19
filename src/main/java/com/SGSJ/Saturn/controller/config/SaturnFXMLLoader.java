@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.config;
+package com.SGSJ.Saturn.controller.config;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

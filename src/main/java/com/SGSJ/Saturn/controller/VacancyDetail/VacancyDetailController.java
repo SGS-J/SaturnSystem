@@ -1,7 +1,7 @@
 package com.SGSJ.Saturn.controller.VacancyDetail;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.config.DataHolder;
+import com.SGSJ.Saturn.controller.config.DataHolder;
 import com.SGSJ.Saturn.controller.GenericController;
 import com.SGSJ.Saturn.controller.VacancyMain.VacancyProperty;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;

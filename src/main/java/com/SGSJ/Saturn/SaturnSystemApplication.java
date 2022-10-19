@@ -1,7 +1,7 @@
 package com.SGSJ.Saturn;
 
-import com.SGSJ.Saturn.config.SaturnFXMLLoader;
-import com.SGSJ.Saturn.config.StageManager;
+import com.SGSJ.Saturn.controller.config.SaturnFXMLLoader;
+import com.SGSJ.Saturn.controller.config.StageManager;
 import com.SGSJ.Saturn.security.LoginInfo;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.application.Application;

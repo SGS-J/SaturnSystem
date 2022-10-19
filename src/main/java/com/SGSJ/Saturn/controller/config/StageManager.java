@@ -1,11 +1,10 @@
-package com.SGSJ.Saturn.config;
+package com.SGSJ.Saturn.controller.config;
 
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 
