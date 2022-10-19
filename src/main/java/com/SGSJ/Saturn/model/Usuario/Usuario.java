@@ -15,6 +15,8 @@ public class Usuario implements Serializable {
     private Long UsuarioID;
     @Column(name = "usuarionombre")
     private String UsuarioNombre;
+    @Column(name = "usuariocedula")
+    private Long UsuarioCedula;
     private String Correo;
     @Column(name = "hojavidapath")
     private String HojaVidaPath;
@@ -104,5 +106,13 @@ public class Usuario implements Serializable {
 
     public void setUsuarioUUID(String usuarioUUID) {
         UsuarioUUID = usuarioUUID;
+    }
+
+    public Long getUsuarioCedula() {
+        return UsuarioCedula;
+    }
+
+    public void setUsuarioCedula(Long usuarioCedula) {
+        UsuarioCedula = usuarioCedula;
     }
 }

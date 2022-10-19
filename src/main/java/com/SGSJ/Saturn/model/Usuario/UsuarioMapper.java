@@ -13,6 +13,7 @@ public interface UsuarioMapper {
     @Mappings({
             @Mapping(target = "usuarioID", source = "userId"),
             @Mapping(target = "usuarioNombre", source = "name"),
+            @Mapping(target = "usuarioCedula", source = "identification"),
             @Mapping(target = "hojaVidaPath", source = "pathToCV"),
             @Mapping(target = "telefonos", source = "phoneNumbers"),
             @Mapping(target = "correo", source = "email"),

@@ -19,7 +19,7 @@ public class UserProperty {
     }
 
     public UserProperty(User user) {
-        this.id = new SimpleLongProperty(user.getUserId());
+        this.id = new SimpleLongProperty(user.getIdentification());
         this.name = new SimpleStringProperty(user.getName());
         this.mainPhone = new SimpleStringProperty(user.getPhoneNumbers());
         this.secondaryPhone = new SimpleStringProperty(user.getPhoneNumbers());
