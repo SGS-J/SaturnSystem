@@ -25,7 +25,7 @@ public class RegisterVerificator {
     }
 
     private static boolean matchPattern(String password) {
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\\\S+$).{8,}$";
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{8,}$";
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         return pattern.matcher(password).find();
     }
