@@ -3,7 +3,6 @@ package com.SGSJ.Saturn.domain.User;
 public class User {
     private Long userId;
     private String name;
-    private Long identification;
     private String email;
     private String pathToCV;
     private String phoneNumbers;
@@ -55,13 +54,5 @@ public class User {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public Long getIdentification() {
-        return identification;
-    }
-
-    public void setIdentification(Long identification) {
-        this.identification = identification;
     }
 }

@@ -3,20 +3,20 @@ package com.SGSJ.Saturn.model.Usuario;
 import com.SGSJ.Saturn.model.Vacante.Vacante;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuarioid")
     private Long UsuarioID;
     @Column(name = "usuarionombre")
     private String UsuarioNombre;
-    @Column(name = "usuariocedula")
-    private Long UsuarioCedula;
     private String Correo;
     @Column(name = "hojavidapath")
     private String HojaVidaPath;
@@ -106,13 +106,5 @@ public class Usuario implements Serializable {
 
     public void setUsuarioUUID(String usuarioUUID) {
         UsuarioUUID = usuarioUUID;
-    }
-
-    public Long getUsuarioCedula() {
-        return UsuarioCedula;
-    }
-
-    public void setUsuarioCedula(Long usuarioCedula) {
-        UsuarioCedula = usuarioCedula;
     }
 }
