@@ -1,6 +1,7 @@
 package com.SGSJ.Saturn.view.config;
 
 import com.SGSJ.Saturn.view.SaturnView;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -18,15 +19,20 @@ public class StageManager {
         StageManager.FXMLLoader = FXMLLoader;
     }
 
+    public void showDialogModal(Node node, String title) {
+        Scene scene;
+        if(node.getScene() == null) {
+            scene = new Scene((Parent) node);
+        } else {
+            scene = node.getScene();
+        }
+        showDialogModal(scene, title);
+    }
+
     public void showDialogModal(final SaturnView view, String title) throws IOException {
         Parent rootNode = FXMLLoader.loadFXML(view.getSaturnViewPath());
         Scene scene = new Scene(rootNode);
-        dialogStage = new Stage();
-        dialogStage.setTitle(title);
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.initOwner(this.primaryStage);
-        dialogStage.setScene(scene);
-        dialogStage.showAndWait();
+        showDialogModal(scene, title);
     }
 
     public void closeDialogModal() {
@@ -36,6 +42,15 @@ public class StageManager {
     public void switchScene(final SaturnView view) throws IOException {
         Parent rootNode = FXMLLoader.loadFXML(view.getSaturnViewPath());
         show(rootNode);
+    }
+
+    private void showDialogModal(Scene scene, String title) {
+        dialogStage = new Stage();
+        dialogStage.setTitle(title);
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(this.primaryStage);
+        dialogStage.setScene(scene);
+        dialogStage.showAndWait();
     }
 
     private void show(final Parent rootNode) {
