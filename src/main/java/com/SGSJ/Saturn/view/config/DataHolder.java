@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.view.controller.config;
+package com.SGSJ.Saturn.view.config;
 
 /*
  * This class wraps temporal data through the views

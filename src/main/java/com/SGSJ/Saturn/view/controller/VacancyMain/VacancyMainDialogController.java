@@ -1,7 +1,7 @@
 package com.SGSJ.Saturn.view.controller.VacancyMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.view.controller.config.DataHolder;
+import com.SGSJ.Saturn.view.config.DataHolder;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
