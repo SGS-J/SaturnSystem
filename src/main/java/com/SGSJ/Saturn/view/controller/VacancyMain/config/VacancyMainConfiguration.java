@@ -24,6 +24,8 @@ public class VacancyMainConfiguration {
     }
 
     public void configureTableView(VacancyMainController controller) {
+        controller.getVacancyTable().setPlaceholder(new Label("No se encontraron vacantes."));
+
         controller.getIdColumn().setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         controller.getNameColumn().setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         controller.getJobOfferColumn().setCellValueFactory(cellData -> cellData.getValue().jobOfferProperty().asObject());
