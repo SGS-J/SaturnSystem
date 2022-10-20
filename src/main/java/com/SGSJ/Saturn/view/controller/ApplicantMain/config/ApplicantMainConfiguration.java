@@ -1,6 +1,6 @@
-package com.SGSJ.Saturn.controller.ApplicantMain.config;
+package com.SGSJ.Saturn.view.controller.ApplicantMain.config;
 
-import com.SGSJ.Saturn.controller.ApplicantMain.ApplicantMainController;
+import com.SGSJ.Saturn.view.controller.ApplicantMain.ApplicantMainController;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

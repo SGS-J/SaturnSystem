@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller;
+package com.SGSJ.Saturn.view.controller;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.security.LoginInfo;

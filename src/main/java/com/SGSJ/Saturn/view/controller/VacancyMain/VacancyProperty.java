@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller.VacancyMain;
+package com.SGSJ.Saturn.view.controller.VacancyMain;
 
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import javafx.beans.property.*;

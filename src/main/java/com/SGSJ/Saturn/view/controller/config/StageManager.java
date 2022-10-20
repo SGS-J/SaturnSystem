@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller.config;
+package com.SGSJ.Saturn.view.controller.config;
 
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.scene.Parent;

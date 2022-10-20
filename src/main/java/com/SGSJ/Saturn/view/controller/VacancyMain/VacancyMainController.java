@@ -1,9 +1,9 @@
-package com.SGSJ.Saturn.controller.VacancyMain;
+package com.SGSJ.Saturn.view.controller.VacancyMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.controller.config.DataHolder;
-import com.SGSJ.Saturn.controller.GenericController;
-import com.SGSJ.Saturn.controller.VacancyMain.config.VacancyMainConfiguration;
+import com.SGSJ.Saturn.view.controller.config.DataHolder;
+import com.SGSJ.Saturn.view.controller.GenericController;
+import com.SGSJ.Saturn.view.controller.VacancyMain.config.VacancyMainConfiguration;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
 import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
 import com.SGSJ.Saturn.view.SaturnView;

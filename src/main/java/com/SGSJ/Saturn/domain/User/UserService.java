@@ -26,6 +26,7 @@ public class UserService implements UserRepository{
 
     @Override
     public User add(User newUser) {
+        newUser.setState(UserState.EN_ESPERA.name());
         return userDTO.toUser(usuarioCrud.save(userDTO.toUsuario(newUser)));
     }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.controller.LogIn.LogInController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.view.controller.LogIn.LogInController">
    <children>
       <FlowPane layoutX="415.0" layoutY="223.0" orientation="VERTICAL" prefHeight="254.0" prefWidth="170.0" vgap="10.0">
          <children>

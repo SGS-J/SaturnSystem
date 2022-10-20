@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller.ApplicantMain;
+package com.SGSJ.Saturn.view.controller.ApplicantMain;
 
 import com.SGSJ.Saturn.domain.User.User;
 import javafx.beans.property.LongProperty;

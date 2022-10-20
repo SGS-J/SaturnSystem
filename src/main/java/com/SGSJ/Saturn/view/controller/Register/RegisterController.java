@@ -1,7 +1,7 @@
-package com.SGSJ.Saturn.controller.Register;
+package com.SGSJ.Saturn.view.controller.Register;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.controller.Register.util.RegisterVerificator;
+import com.SGSJ.Saturn.view.controller.Register.util.RegisterVerificator;
 import com.SGSJ.Saturn.domain.Employee.Employee;
 import com.SGSJ.Saturn.domain.Employee.EmployeeService;
 import com.SGSJ.Saturn.exceptions.InvalidRegisterDataException;

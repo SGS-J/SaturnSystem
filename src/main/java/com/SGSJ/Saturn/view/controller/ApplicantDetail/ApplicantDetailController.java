@@ -1,9 +1,9 @@
-package com.SGSJ.Saturn.controller.ApplicantDetail;
+package com.SGSJ.Saturn.view.controller.ApplicantDetail;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.controller.config.DataHolder;
-import com.SGSJ.Saturn.controller.ApplicantMain.UserProperty;
-import com.SGSJ.Saturn.controller.GenericController;
+import com.SGSJ.Saturn.view.controller.config.DataHolder;
+import com.SGSJ.Saturn.view.controller.ApplicantMain.UserProperty;
+import com.SGSJ.Saturn.view.controller.GenericController;
 import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.domain.User.UserState;
 import com.SGSJ.Saturn.view.SaturnView;

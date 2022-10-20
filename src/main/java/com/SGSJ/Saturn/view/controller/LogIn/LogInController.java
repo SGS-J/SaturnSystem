@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller.LogIn;
+package com.SGSJ.Saturn.view.controller.LogIn;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.domain.Employee.Employee;

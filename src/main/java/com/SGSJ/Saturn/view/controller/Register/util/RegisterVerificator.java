@@ -1,4 +1,4 @@
-package com.SGSJ.Saturn.controller.Register.util;
+package com.SGSJ.Saturn.view.controller.Register.util;
 
 import com.SGSJ.Saturn.domain.Employee.Employee;
 import com.SGSJ.Saturn.exceptions.InvalidRegisterDataException;

@@ -1,6 +1,6 @@
-package com.SGSJ.Saturn.controller.VacancyMain.config;
+package com.SGSJ.Saturn.view.controller.VacancyMain.config;
 
-import com.SGSJ.Saturn.controller.VacancyMain.VacancyMainController;
+import com.SGSJ.Saturn.view.controller.VacancyMain.VacancyMainController;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;

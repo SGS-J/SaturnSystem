@@ -1,9 +1,9 @@
-package com.SGSJ.Saturn.controller.ApplicantMain;
+package com.SGSJ.Saturn.view.controller.ApplicantMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
-import com.SGSJ.Saturn.controller.config.DataHolder;
-import com.SGSJ.Saturn.controller.GenericController;
-import com.SGSJ.Saturn.controller.ApplicantMain.config.ApplicantMainConfiguration;
+import com.SGSJ.Saturn.view.controller.config.DataHolder;
+import com.SGSJ.Saturn.view.controller.GenericController;
+import com.SGSJ.Saturn.view.controller.ApplicantMain.config.ApplicantMainConfiguration;
 import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.collections.FXCollections;
