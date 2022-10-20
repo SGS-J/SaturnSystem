@@ -14,6 +14,7 @@ public class UserProperty {
     private StringProperty secondaryPhone;
     private StringProperty email;
     private StringProperty state;
+    private StringProperty pathToCV;
 
     public UserProperty() {
     }
@@ -25,6 +26,7 @@ public class UserProperty {
         this.secondaryPhone = new SimpleStringProperty(user.getPhoneNumbers());
         this.email = new SimpleStringProperty(user.getEmail());
         this.state = new SimpleStringProperty(user.getState());
+        this.pathToCV = new SimpleStringProperty(user.getPathToCV());
     }
 
     public long getId() {
@@ -97,5 +99,17 @@ public class UserProperty {
 
     public void setState(String state) {
         this.state.set(state);
+    }
+
+    public String getPathToCV() {
+        return pathToCV.get();
+    }
+
+    public StringProperty pathToCVProperty() {
+        return pathToCV;
+    }
+
+    public void setPathToCV(String pathToCV) {
+        this.pathToCV.set(pathToCV);
     }
 }

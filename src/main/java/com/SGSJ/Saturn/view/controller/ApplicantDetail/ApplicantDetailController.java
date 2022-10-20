@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -40,6 +42,9 @@ public class ApplicantDetailController extends GenericController {
 
     @FXML
     private Label secondaryPhoneLabel;
+
+    @FXML
+    private ImageView imagePreview;
 
     private DataHolder<UserProperty> userData;
     @Autowired
