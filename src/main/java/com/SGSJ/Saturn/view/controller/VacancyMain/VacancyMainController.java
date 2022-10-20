@@ -75,8 +75,8 @@ public class VacancyMainController extends GenericController {
         SaturnSystemApplication.getStageManager().showDialogModal(SaturnView.VACANCY_DIALOG_CREATE, "Crear Vacante");
         DataHolder<Vacancy> boundData = DataHolder.getInstance();
         Vacancy vacancy = boundData.getObject();
-        vacancyData.add(new VacancyProperty(vacancy));
-        vacancyService.add(vacancy);
+        Vacancy vacancyAdded = vacancyService.add(vacancy);
+        vacancyData.add(new VacancyProperty(vacancyAdded));
     }
 
     public TableView<VacancyProperty> getVacancyTable() {

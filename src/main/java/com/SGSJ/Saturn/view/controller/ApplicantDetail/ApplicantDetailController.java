@@ -62,16 +62,11 @@ public class ApplicantDetailController extends GenericController {
         String btnPressedId = btnPressed.getId();
 
         switch (btnPressedId) {
-            case "acceptBtn":
-                userService.updateState(UserState.ACEPTADO, userData.getObject().getId());
-                break;
-            case "rejectBtn":
-                userService.updateState(UserState.RECHAZADO, userData.getObject().getId());
-                break;
-            case "deleteBtn":
-                userService.deleteById(userData.getObject().getId());
-                SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
-                break;
-        };
+            case "acceptBtn" -> userService.updateState(UserState.ACEPTADO, userData.getObject().getId());
+            case "rejectBtn" -> userService.updateState(UserState.RECHAZADO, userData.getObject().getId());
+            case "deleteBtn" -> userService.deleteById(userData.getObject().getId());
+        }
+
+        SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
     }
 }
