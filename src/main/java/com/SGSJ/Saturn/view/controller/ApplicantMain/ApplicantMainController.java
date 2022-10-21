@@ -63,7 +63,7 @@ public class ApplicantMainController extends GenericController {
     @Override
     synchronized public void initialize(URL location, ResourceBundle resources) {
         userData.clear();
-        userService.getAll().stream().forEach(user -> {
+        userService.getAll().forEach(user -> {
             userData.add(new UserProperty(user));
         });
 

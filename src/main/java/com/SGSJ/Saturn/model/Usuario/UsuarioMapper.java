@@ -14,16 +14,16 @@ public interface UsuarioMapper {
             @Mapping(target = "usuarioID", source = "userId"),
             @Mapping(target = "usuarioNombre", source = "name"),
             @Mapping(target = "hojaVidaPath", source = "pathToCV"),
-            @Mapping(target = "telefonos", source = "phoneNumbers"),
             @Mapping(target = "correo", source = "email"),
             @Mapping(target = "estado", source = "state"),
+            @Mapping(target = "telefonos", ignore = true),
             @Mapping(target = "usuarioUUID", ignore = true),
             @Mapping(target = "usuarioVacante", ignore = true),
     })
     Usuario toUsuario(User user);
-    List<Usuario> toUsuarios(List<User> usuarioList);
 
     @InheritInverseConfiguration
+    @Mapping(target = "documentPDF", ignore = true)
+    @Mapping(target = "phoneNumbers", ignore = true)
     User toUser(Usuario usuario);
-    List<User> toUsers(List<Usuario> usuarioList);
 }

@@ -6,4 +6,10 @@ public class InvalidFileTypeException extends Exception{
     public InvalidFileTypeException() {
         super();
     }
+
+    @Override
+    public String getMessage() {
+        return this.errorMsg;
+    }
+
 }

@@ -22,8 +22,8 @@ public class UserProperty {
     public UserProperty(User user) {
         this.id = new SimpleLongProperty(user.getUserId());
         this.name = new SimpleStringProperty(user.getName());
-        this.mainPhone = new SimpleStringProperty(user.getPhoneNumbers());
-        this.secondaryPhone = new SimpleStringProperty(user.getPhoneNumbers());
+        this.mainPhone = new SimpleStringProperty(user.getPhoneNumbers().get(0));
+        this.secondaryPhone = new SimpleStringProperty(user.getPhoneNumbers().get(1));
         this.email = new SimpleStringProperty(user.getEmail());
         this.state = new SimpleStringProperty(user.getState());
         this.pathToCV = new SimpleStringProperty(user.getPathToCV());

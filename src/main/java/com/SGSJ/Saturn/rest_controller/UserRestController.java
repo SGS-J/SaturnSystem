@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/user")
@@ -23,9 +25,16 @@ public class UserRestController {
     private UserService userService;
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public User addNewUser(@RequestPart User user, @RequestPart MultipartFile document) {
+    public User addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
+        ArrayList<String> phoneNumbers = new ArrayList<>();
+        phoneNumbers.add(mainPhone);
+        phoneNumbers.add(secondaryPhone);
+        user.setPhoneNumbers(phoneNumbers);
+
+        MultipartFile document = user.getDocumentPDF();
+        String documentType = document.getContentType();
+
         try {
-            String documentType = document.getContentType();
             assert documentType != null;
             if(!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
 
@@ -34,8 +43,9 @@ public class UserRestController {
             File file = new File(path);
             document.transferTo(file);
             user.setPathToCV(path);
-        } catch (IOException | InvalidFileTypeException e) {
+        } catch (IOException | InvalidFileTypeException | AssertionError e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return userService.add(user);
     }
