@@ -65,6 +65,11 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
+                  <Button fx:id="acceptBtn" mnemonicParsing="false" onAction="#handleButtonPressed" prefHeight="34.0" text="Aceptar" visible="false" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
                   <Button fx:id="dismissBtn" mnemonicParsing="false" onAction="#handleButtonPressed" prefHeight="34.0" text="Descartar" visible="false" GridPane.columnIndex="3" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets />
@@ -77,6 +82,11 @@
                   </HBox>
                </children>
             </GridPane>
+            <Label fx:id="warningMsgLabel" layoutX="189.0" layoutY="64.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

@@ -9,9 +9,7 @@ import com.SGSJ.Saturn.domain.Vacancy.VacancyService;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +28,9 @@ public class VacancyDetailController extends GenericController {
     private Button deleteVacancyBtn;
 
     @FXML
+    private Button acceptBtn;
+
+    @FXML
     private Button dismissBtn;
 
     @FXML
@@ -38,9 +39,11 @@ public class VacancyDetailController extends GenericController {
     @FXML
     private TextField nameField;
 
+    @FXML
+    private Label warningMsgLabel;
+
     private DataHolder<VacancyProperty> vacancyData;
-    private boolean isEditingFields = false;
-    private String[] buttonTexts = {"Editar", "Aceptar"};
+    private boolean emptyFields = false;
     @Autowired
     private VacancyService vacancyService;
     @Autowired
@@ -57,7 +60,7 @@ public class VacancyDetailController extends GenericController {
         jobOfferField.setText(Integer.toString(jobOffer));
         jobOfferField.setTextFormatter(new TextFormatter<String>(change -> {
             String text = change.getControlNewText();
-            if(!text.isEmpty() && text.matches("[0-9]*")) return change;
+            if(text.matches("[0-9]*")) return change;
             return null;
         }));
 
@@ -68,8 +71,13 @@ public class VacancyDetailController extends GenericController {
 
     @FXML
     void handleTextChanged(KeyEvent event) {
+        String offerText = jobOfferField.getText().isBlank() ? "0" :
+                jobOfferField.getText();
+        vacancy.setJobOffer(Integer.valueOf(offerText));
         vacancy.setName(nameField.getText());
-        vacancy.setJobOffer(Integer.valueOf(jobOfferField.getText()));
+
+        emptyFields = jobOfferField.getText().isBlank() || nameField.getText().isBlank();
+        warningMsgLabel.setText(emptyFields ? "Los campos no puede estar vacíos" : "");
     }
 
     @FXML
@@ -79,6 +87,11 @@ public class VacancyDetailController extends GenericController {
 
         if(btnPressedId.equals("deleteVacancyBtn")) {
             vacancyService.deleteById(vacancy.getVacancyId());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Vacante eliminada con exito");
+            alert.setHeaderText(null);
+            alert.setTitle("Info");
+            alert.showAndWait();
             SaturnSystemApplication.getStageManager().switchScene(SaturnView.VACANCY_MAIN);
         } else {
             handleEditButtonPressed(btnPressedId);
@@ -87,27 +100,29 @@ public class VacancyDetailController extends GenericController {
     }
 
     private void handleEditButtonPressed(String btnPressedId) {
-        isEditingFields = !isEditingFields;
+        setEditingFields(true);
+        if(btnPressedId.equals("acceptBtn") && !emptyFields) {
+            vacancyService.updateById(vacancy, vacancy.getVacancyId());
+            vacancyData.getObject().setName(vacancy.getName());
+            vacancyData.getObject().setJobOffer(vacancy.getJobOffer());
+            setEditingFields(false);
+        }
+
+        if(btnPressedId.equals("dismissBtn")) {
+            nameField.setText(vacancyData.getObject().getName());
+            jobOfferField.setText(Integer.toString(vacancyData.getObject().getJobOffer()));
+            setEditingFields(false);
+        }
+    }
+
+    private void setEditingFields(boolean isEditingFields) {
         nameField.setEditable(isEditingFields);
         jobOfferField.setEditable(isEditingFields);
-        editBtn.setText(isEditingFields ? buttonTexts[1] :buttonTexts[0]);
+        editBtn.setVisible(!isEditingFields);
+        acceptBtn.setVisible(isEditingFields);
         dismissBtn.setVisible(isEditingFields);
-
-        if(!isEditingFields) {
-            if(btnPressedId.equals("editBtn")) {
-                vacancyService.updateById(vacancy, vacancy.getVacancyId());
-                vacancyData.getObject().setName(vacancy.getName());
-                vacancyData.getObject().setJobOffer(vacancy.getJobOffer());
-                isEditingFields = false;
-            }
-
-            if(btnPressedId.equals("dismissBtn")) {
-                nameField.setText(vacancyData.getObject().getName());
-                jobOfferField.setText(Integer.toString(vacancyData.getObject().getJobOffer()));
-                isEditingFields = false;
-            }
-
-        }
+        if(!warningMsgLabel.getText().isEmpty() &&
+                !isEditingFields) warningMsgLabel.setText("");
     }
 
 }

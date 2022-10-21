@@ -45,18 +45,23 @@ public class VacancyMainDialogController implements Initializable{
             warningMsgLabel.setText("");
         });
 
+        offerField.focusedProperty().addListener((observable, oldValue, isFocused) -> {
+            warningMsgLabel.setText("");
+        });
+
         offerField.setText("0");
         offerField.setTextFormatter(new TextFormatter<String>(change -> {
             String text = change.getControlNewText();
-            if(!text.isEmpty() && text.matches("[0-9]*")) return change;
+            if(text.matches("[0-9]*")) return change;
             return null;
         }));
     }
 
     @FXML
     void handleTextChanged() {
+        String offerText = offerField.getText().isBlank() ? "0" : offerField.getText();
+        vacancy.setJobOffer(Integer.valueOf(offerText));
         vacancy.setName(nameField.getText());
-        vacancy.setJobOffer(Integer.valueOf(offerField.getText()));
     }
 
     @FXML
@@ -65,8 +70,8 @@ public class VacancyMainDialogController implements Initializable{
         String btnPressedId = btnPressed.getId();
 
         if (btnPressedId.equals("acceptBtn")) {
-            if(nameField.getText().isEmpty()) {
-                warningMsgLabel.setText("El campo vacante no puede estar vacío.");
+            if(nameField.getText().isBlank() || offerField.getText().isBlank()) {
+                warningMsgLabel.setText("Los campos no pueden estar vacíos.");
             } else {
                 DataHolder<Vacancy> bindData = DataHolder.getInstance();
                 bindData.setObject(vacancy);

@@ -5,18 +5,18 @@ import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.exceptions.InvalidFileTypeException;
 import com.SGSJ.Saturn.exceptions.InvalidLogInException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @RestController
 @RequestMapping("/user")
@@ -25,7 +25,7 @@ public class UserRestController {
     private UserService userService;
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public User addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
+    public ResponseEntity<?> addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
         ArrayList<String> phoneNumbers = new ArrayList<>();
         phoneNumbers.add(mainPhone);
         phoneNumbers.add(secondaryPhone);
@@ -46,7 +46,8 @@ public class UserRestController {
         } catch (IOException | InvalidFileTypeException | AssertionError e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        return userService.add(user);
+        return new ResponseEntity<>(userService.add(user), HttpStatus.ACCEPTED);
     }
 }
