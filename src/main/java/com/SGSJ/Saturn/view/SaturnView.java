@@ -50,6 +50,12 @@ public enum SaturnView {
         public String getSaturnViewPath() {
             return "./javafx/applicant_detail.fxml";
         }
+    },
+    APPLICANT_DIALOG_UPDATE_STATE {
+        @Override
+        public String getSaturnViewPath() {
+            return "./javafx/dialog_update_applicant_state.fxml";
+        }
     };
     public abstract String getSaturnViewPath();
 }

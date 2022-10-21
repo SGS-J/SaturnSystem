@@ -2,6 +2,7 @@ package com.SGSJ.Saturn.view.controller.ApplicantDetail;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.view.config.DataHolder;
+import com.SGSJ.Saturn.view.controller.ApplicantDetail.config.ApplicantDetailConfiguration;
 import com.SGSJ.Saturn.view.controller.ApplicantDetail.config.PDFViewerConfiguration;
 import com.SGSJ.Saturn.view.controller.ApplicantMain.UserProperty;
 import com.SGSJ.Saturn.view.controller.GenericController;
@@ -49,6 +50,9 @@ public class ApplicantDetailController extends GenericController {
     private Label secondaryPhoneLabel;
 
     @FXML
+    private Label stateLabel;
+
+    @FXML
     private WebView pdfViewerWrapper;
 
     private DataHolder<UserProperty> userData;
@@ -56,6 +60,8 @@ public class ApplicantDetailController extends GenericController {
     private UserService userService;
     @Autowired
     private PDFViewerConfiguration pdfViewerConfiguration;
+    @Autowired
+    private ApplicantDetailConfiguration initConfiguration;
     private WebView webEnginePdf;
 
     @Override
@@ -68,7 +74,9 @@ public class ApplicantDetailController extends GenericController {
         mainPhoneLabel.setText(userProperty.getMainPhone());
         secondaryPhoneLabel.setText(userProperty.getSecondaryPhone());
         emailLabel.setText(userProperty.getEmail());
+        stateLabel.setText(userProperty.getState());
         webEnginePdf = pdfViewerConfiguration.getPDFViewer(userProperty.getPathToCV());
+        initConfiguration.configApplicantButtons(this);
     }
 
     @FXML
@@ -80,13 +88,58 @@ public class ApplicantDetailController extends GenericController {
             SaturnSystemApplication.getStageManager().showDialogModal(webEnginePdf, "Hoja de Vida");
         } else {
             switch (btnPressedId) {
-                case "acceptBtn" -> userService.updateState(UserState.ACEPTADO, userData.getObject().getId());
-                case "rejectBtn" -> userService.updateState(UserState.RECHAZADO, userData.getObject().getId());
-                case "deleteBtn" -> userService.deleteById(userData.getObject().getId());
+                case "acceptBtn" -> ApplicantDetailDialogController.setType(UserState.ACEPTADO.name());
+                case "rejectBtn" -> ApplicantDetailDialogController.setType(UserState.RECHAZADO.name());
+                case "deleteBtn" -> {
+                    String state = userData.getObject().getState();
+                    String dialogState = state.equals(UserState.EN_ESPERA.name()) ? state : "DELETE";
+                    ApplicantDetailDialogController.setType(dialogState);
+                }
             }
-            SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
+            SaturnSystemApplication.getStageManager().showDialogModal(SaturnView.APPLICANT_DIALOG_UPDATE_STATE, "Actualizar Estado.");
+            if(ApplicantDetailDialogController.isOkClicked()) {
+                String dialogType = ApplicantDetailDialogController.getType();
+                Long id = userData.getObject().getId();
+                if(dialogType.equals("DELETE")) {
+                    userService.deleteById(id);
+                } else {
+                    String state = userData.getObject().getState();
+                    userService.updateState(UserState.valueOf(state), id);
+                }
+                SaturnSystemApplication.getStageManager().switchScene(SaturnView.APPLICANT_MAIN);
+            };
         }
+    }
 
+    public DataHolder<UserProperty> getUserData() {
+        return userData;
+    }
 
+    public void setUserData(DataHolder<UserProperty> userData) {
+        this.userData = userData;
+    }
+
+    public Button getRejectBtn() {
+        return rejectBtn;
+    }
+
+    public void setRejectBtn(Button rejectBtn) {
+        this.rejectBtn = rejectBtn;
+    }
+
+    public Button getAcceptBtn() {
+        return acceptBtn;
+    }
+
+    public void setAcceptBtn(Button acceptBtn) {
+        this.acceptBtn = acceptBtn;
+    }
+
+    public Button getDeleteBtn() {
+        return deleteBtn;
+    }
+
+    public void setDeleteBtn(Button deleteBtn) {
+        this.deleteBtn = deleteBtn;
     }
 }
