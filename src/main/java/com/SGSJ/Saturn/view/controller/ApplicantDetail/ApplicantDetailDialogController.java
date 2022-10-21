@@ -74,9 +74,13 @@ public class ApplicantDetailDialogController implements Initializable {
         String btnClickedId = btnClicked.getId();
 
         okClicked = btnClickedId.equals("confirmBtn");
-        if(okClicked && !type.equals("DELETE")) {
-            DataHolder<UserProperty> boundData = DataHolder.getInstance();
-            boundData.getObject().setState(type);
+        if(okClicked) {
+            if(type.equals("EN_ESPERA")) {
+                type = "DELETE";
+            } else {
+                DataHolder<UserProperty> boundData = DataHolder.getInstance();
+                boundData.getObject().setState(type);
+            }
         }
 
         SaturnSystemApplication.getStageManager().closeDialogModal();
