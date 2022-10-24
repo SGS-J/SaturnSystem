@@ -4,6 +4,8 @@ import com.SGSJ.Saturn.domain.User.User;
 import com.SGSJ.Saturn.domain.User.UserService;
 import com.SGSJ.Saturn.exceptions.InvalidFileTypeException;
 import com.SGSJ.Saturn.exceptions.InvalidLogInException;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -17,7 +19,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -25,6 +30,10 @@ import java.util.ArrayList;
 public class UserRestController {
     @Autowired
     private UserService userService;
+    @Value("${spring.application.pdf-folder}")
+    private String pdfPath;
+    @Value("${spring.profiles.active}")
+    private String env;
 
     @CrossOrigin(origins = "https://sgs-j.github.io")
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -36,16 +45,22 @@ public class UserRestController {
 
         MultipartFile document = user.getDocumentPDF();
         String documentType = document.getContentType();
+        pdfPath = "/dist/resources/CV/";
+        if(!env.equals("prod")) pdfPath = "/libs/dist/resources/CV/";
 
         try {
             assert documentType != null;
             if(!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
 
-            String path = new ClassPathResource("").getURL().getPath()
-                    + "/" + document.getOriginalFilename();
-            File file = new File(path);
-            document.transferTo(file);
-            user.setPathToCV(path);
+            File jarFile = new File(new ClassPathResource("").getURL().getPath());
+            File appFile = jarFile.getParentFile().getParentFile().getParentFile();
+            File finalFile = new File(appFile + pdfPath + document.getOriginalFilename());
+
+            String pathFormatted = finalFile.getPath().replace("file:\\", "");
+            OutputStream os = new FileOutputStream(pathFormatted);
+            os.write(document.getBytes());
+
+            user.setPathToCV(pathFormatted);
         } catch (IOException | InvalidFileTypeException | AssertionError e) {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
