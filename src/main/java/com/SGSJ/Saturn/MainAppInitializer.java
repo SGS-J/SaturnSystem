@@ -2,6 +2,7 @@ package com.SGSJ.Saturn;
 
 import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
 
 @SpringBootApplication
 public class MainAppInitializer {

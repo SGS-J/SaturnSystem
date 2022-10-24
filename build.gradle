@@ -39,8 +39,8 @@ application {
 	mainClass = 'com.SGSJ.Saturn.MainAppInitializer'
 }
 
-tasks.jar {
-	manifest.attributes["Main-Class"] = "com.SGSJ.Saturn.MainAppInitializer"
+task prepareDir {
+	mkdir "$buildDir/"
 }
 
 tasks.named('test') {

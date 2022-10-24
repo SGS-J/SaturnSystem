@@ -1,4 +1,5 @@
 DATABASE_INSTALLATION.sql
+src/main/dist
 
 HELP.md
 .gradle

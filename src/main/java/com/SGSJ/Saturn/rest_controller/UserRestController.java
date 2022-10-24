@@ -25,6 +25,8 @@ import java.util.ArrayList;
 public class UserRestController {
     @Autowired
     private UserService userService;
+    @Value("${spring.application.pdf-folder}")
+    private String pdfPath;
 
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
@@ -40,14 +42,13 @@ public class UserRestController {
             assert documentType != null;
             if(!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
 
-            String path = new ClassPathResource("/CV").getURI().getPath()
+            String path = new ClassPathResource(pdfPath).getURL().getPath()
                     + "/" + document.getOriginalFilename();
             File file = new File(path);
             document.transferTo(file);
             user.setPathToCV(path);
         } catch (IOException | InvalidFileTypeException | AssertionError e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(userService.add(user), HttpStatus.ACCEPTED);
