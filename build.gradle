@@ -40,7 +40,7 @@ application {
 }
 
 tasks.build {
-	mkdir "$buildDir/dist/resources/CV"
+	mkdir "$buildDir/libs/dist/resources/CV"
 }
 
 tasks.named('test') {
