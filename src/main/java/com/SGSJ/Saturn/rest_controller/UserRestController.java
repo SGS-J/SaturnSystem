@@ -25,9 +25,8 @@ import java.util.ArrayList;
 public class UserRestController {
     @Autowired
     private UserService userService;
-    @Value("${spring.application.pdf-folder}")
-    private String pdfPath;
 
+    @CrossOrigin(origins = "https://sgs-j.github.io")
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
         ArrayList<String> phoneNumbers = new ArrayList<>();
@@ -42,7 +41,7 @@ public class UserRestController {
             assert documentType != null;
             if(!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
 
-            String path = new ClassPathResource(pdfPath).getURL().getPath()
+            String path = new ClassPathResource("").getURL().getPath()
                     + "/" + document.getOriginalFilename();
             File file = new File(path);
             document.transferTo(file);

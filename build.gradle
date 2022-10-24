@@ -39,8 +39,8 @@ application {
 	mainClass = 'com.SGSJ.Saturn.MainAppInitializer'
 }
 
-task prepareDir {
-	mkdir "$buildDir/"
+tasks.build {
+	mkdir "$buildDir/dist/resources/CV"
 }
 
 tasks.named('test') {
