@@ -52,9 +52,6 @@ public class ApplicantDetailController extends GenericController {
     @FXML
     private Label stateLabel;
 
-    @FXML
-    private WebView pdfViewerWrapper;
-
     private DataHolder<UserProperty> userData;
     @Autowired
     private UserService userService;
@@ -62,7 +59,7 @@ public class ApplicantDetailController extends GenericController {
     private PDFViewerConfiguration pdfViewerConfiguration;
     @Autowired
     private ApplicantDetailConfiguration initConfiguration;
-    private volatile WebView webEnginePdf;
+    private WebView webEnginePdf;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,8 +72,11 @@ public class ApplicantDetailController extends GenericController {
         secondaryPhoneLabel.setText(userProperty.getSecondaryPhone());
         emailLabel.setText(userProperty.getEmail());
         stateLabel.setText(userProperty.getState());
+
         initConfiguration.configApplicantButtons(this);
-        webEnginePdf = pdfViewerConfiguration.getPDFViewer(userProperty.getPathToCV());
+
+        webEnginePdf = new WebView();
+        pdfViewerConfiguration.getPDFViewer(userProperty.getPathToCV(), webEnginePdf);
     }
 
     @FXML

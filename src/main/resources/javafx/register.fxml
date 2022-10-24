@@ -6,16 +6,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.view.controller.Register.RegisterController">
+
+<FlowPane alignment="CENTER" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.SGSJ.Saturn.view.controller.Register.RegisterController">
    <children>
-      <FlowPane layoutX="400.0" layoutY="167.0" orientation="VERTICAL" prefHeight="365.0" prefWidth="200.0" vgap="10.0">
+      <FlowPane orientation="VERTICAL" prefHeight="365.0" prefWidth="200.0" vgap="10.0">
          <children>
             <Label alignment="CENTER" prefWidth="170.0" text="Registro" textAlignment="CENTER">
                <FlowPane.margin>
@@ -83,6 +83,9 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </FlowPane>
-      <Label fx:id="passwordValidLabel" layoutX="600.0" layoutY="269.0" prefHeight="66.0" prefWidth="163.0" text="La contraseña debe tener un mínimo de 8 caracteres y al menos un caracter númerico." textAlignment="JUSTIFY" visible="false" wrapText="true" />
+      <Label fx:id="passwordValidLabel" prefHeight="66.0" prefWidth="163.0" text="La contraseña debe tener un mínimo de 8 caracteres y al menos un caracter númerico." textAlignment="JUSTIFY" visible="false" wrapText="true" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets left="200.0" />
+   </padding>
+</FlowPane>
