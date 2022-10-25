@@ -8,6 +8,8 @@ Clonar el repositorio.
     
     git clone https://github.com/SGS-J/SaturnSystem.git
   
+Si lo desea, en vez de clonar, puede descargar el RELEASE 1.2 con el codigo fuente.
+
 Instalar base de datos MySql con el script "DATABASE_INSTALLATION.sql".
 
 Cambiar las credenciales de usuario de la base de datos en el archivo "application.properties".
