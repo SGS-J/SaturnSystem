@@ -3,7 +3,6 @@ package com.SGSJ.Saturn.view.controller.ApplicantDetail;
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.view.config.DataHolder;
 import com.SGSJ.Saturn.view.controller.ApplicantDetail.config.ApplicantDetailConfiguration;
-import com.SGSJ.Saturn.view.controller.ApplicantDetail.config.PDFViewerConfiguration;
 import com.SGSJ.Saturn.view.controller.ApplicantMain.UserProperty;
 import com.SGSJ.Saturn.view.controller.GenericController;
 import com.SGSJ.Saturn.domain.User.UserService;
@@ -11,11 +10,12 @@ import com.SGSJ.Saturn.domain.User.UserState;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.web.WebView;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,10 +56,7 @@ public class ApplicantDetailController extends GenericController {
     @Autowired
     private UserService userService;
     @Autowired
-    private PDFViewerConfiguration pdfViewerConfiguration;
-    @Autowired
     private ApplicantDetailConfiguration initConfiguration;
-    private WebView webEnginePdf;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,9 +71,6 @@ public class ApplicantDetailController extends GenericController {
         stateLabel.setText(userProperty.getState());
 
         initConfiguration.configApplicantButtons(this);
-
-        webEnginePdf = new WebView();
-        pdfViewerConfiguration.getPDFViewer(userProperty.getPathToCV(), webEnginePdf);
     }
 
     @FXML
@@ -85,7 +79,8 @@ public class ApplicantDetailController extends GenericController {
         String btnPressedId = btnPressed.getId();
 
         if(btnPressedId.equals("viewCvBtn")) {
-            SaturnSystemApplication.getStageManager().showDialogModal(webEnginePdf, "Hoja de Vida");
+            File file = new File(userData.getObject().getPathToCV());
+            SaturnSystemApplication.getAppHostServices().showDocument(file.getAbsolutePath());
         } else {
             switch (btnPressedId) {
                 case "acceptBtn" -> ApplicantDetailDialogController.setType(UserState.ACEPTADO.name());

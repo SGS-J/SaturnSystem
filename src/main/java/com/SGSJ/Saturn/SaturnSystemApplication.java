@@ -5,6 +5,7 @@ import com.SGSJ.Saturn.view.config.StageManager;
 import com.SGSJ.Saturn.security.LoginInfo;
 import com.SGSJ.Saturn.view.SaturnView;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class SaturnSystemApplication extends Application {
     private static StageManager stageManager;
     private static LoginInfo userLogged = LoginInfo.NOT_LOGGED;
+    private static HostServices hostServices;
     private final String APP_TITLE = "Saturn";
     private final int HEIGHT = 700;
     private final int WIDTH = 1000;
@@ -22,11 +24,13 @@ public class SaturnSystemApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        try {
-            primaryStage.setHeight(HEIGHT);
-            primaryStage.setWidth(WIDTH);
-            primaryStage.setTitle(APP_TITLE);
+        hostServices = getHostServices();
 
+        primaryStage.setHeight(HEIGHT);
+        primaryStage.setWidth(WIDTH);
+        primaryStage.setTitle(APP_TITLE);
+
+        try {
             stageManager = new StageManager(primaryStage, new SaturnFXMLLoader(appContext));
 
             if(isUserLogged()) {
@@ -50,6 +54,10 @@ public class SaturnSystemApplication extends Application {
     public void stop() throws Exception {
         appContext.close();
         Platform.exit();
+    }
+
+    public static HostServices getAppHostServices() {
+        return hostServices;
     }
 
     public static StageManager getStageManager() {
