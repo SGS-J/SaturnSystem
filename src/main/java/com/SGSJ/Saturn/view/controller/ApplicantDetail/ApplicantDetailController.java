@@ -12,12 +12,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 @Controller
@@ -96,6 +100,9 @@ public class ApplicantDetailController extends GenericController {
                 String dialogType = ApplicantDetailDialogController.getType();
                 Long id = userData.getObject().getId();
                 if(dialogType.equals("DELETE")) {
+                    String pathFile = userData.getObject().getPathToCV();
+                    File file = new File(pathFile);
+                    FileUtils.deleteDirectory(file.getParentFile());
                     userService.deleteById(id);
                 } else {
                     String state = userData.getObject().getState();
