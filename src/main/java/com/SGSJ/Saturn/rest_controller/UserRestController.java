@@ -54,11 +54,8 @@ public class UserRestController {
 
             File jarFile = new File(new ClassPathResource("").getURL().getPath());
             File appFile = jarFile.getParentFile().getParentFile().getParentFile();
-            String folderName = user.getName() + "_" + user.getEmail();
-            File folder = new File(appFile + pdfPath + "/" + folderName);
-            if(!folder.exists()) {
-                folder.mkdir();
-            }
+            String fileName = user.getName() + "_" + user.getEmail();
+            File folder = new File(appFile + pdfPath + fileName);
             File finalFile = new File(folder + document.getOriginalFilename());
 
             String pathFormatted = finalFile.getPath().replace("file:\\", "");

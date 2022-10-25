@@ -102,7 +102,7 @@ public class ApplicantDetailController extends GenericController {
                 if(dialogType.equals("DELETE")) {
                     String pathFile = userData.getObject().getPathToCV();
                     File file = new File(pathFile);
-                    FileUtils.deleteDirectory(file.getParentFile());
+                    FileUtils.delete(file);
                     userService.deleteById(id);
                 } else {
                     String state = userData.getObject().getState();
