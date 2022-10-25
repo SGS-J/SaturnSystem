@@ -10,7 +10,8 @@ Clonar el repositorio.
   
 Instalar base de datos MySql con el script "DATABASE_INSTALLATION.sql".
 
-Cambiar las credenciales de usuario de la base de datos en el archivo "application.properties"
+Cambiar las credenciales de usuario de la base de datos en el archivo "application.properties".
+Este mismo se encuentra en src/main/resources/ .
 
     spring.datasource.username=[nombre de usuario]
     spring.datasource.password=[contraseña]
