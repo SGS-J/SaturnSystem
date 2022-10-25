@@ -4,12 +4,21 @@ Sistema de gestión talento humano proyecto SENA.
 
 ## Instalación
 
-Clonar el repositorio y ejecutar el comando para iniciar la aplicación con Gradle.    
+Clonar el repositorio.    
     
     git clone https://github.com/SGS-J/SaturnSystem.git
+  
+Instalar base de datos MySql con el script "DATABASE_INSTALLATION.sql".
+
+Cambiar las credenciales de usuario de la base de datos en el archivo "application.properties"
+
+    spring.datasource.username=[nombre de usuario]
+    spring.datasource.password=[contraseña]
+    
+Ejecutar el comando para iniciar la aplicación con Gradle.
+
     cd SaturnSystem
     .\gradlew run
-
 Para generar el archivo Jar el comando es el siguiente:
 
     .\gradlew clean
@@ -28,3 +37,6 @@ Importante NO ejecutar la version -plain si no la versión completa, con todas l
 *	[Apache Commons-IO](https://commons.apache.org/proper/commons-io/)
 *	[MySQL Connector-Java](https://mvnrepository.com/artifact/mysql/mysql-connector-java)
 
+## Empaquetador y Despliegue
+*   [Gradle](https://gradle.org)
+*   [Launch4j](https://launch4j.sourceforge.net)
