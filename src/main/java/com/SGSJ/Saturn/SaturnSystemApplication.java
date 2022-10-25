@@ -7,9 +7,11 @@ import com.SGSJ.Saturn.view.SaturnView;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 
@@ -29,6 +31,12 @@ public class SaturnSystemApplication extends Application {
         primaryStage.setHeight(HEIGHT);
         primaryStage.setWidth(WIDTH);
         primaryStage.setTitle(APP_TITLE);
+
+        try {
+            primaryStage.getIcons().add(new Image(new ClassPathResource("/icon/saturn.png").getURL().toExternalForm()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             stageManager = new StageManager(primaryStage, new SaturnFXMLLoader(appContext));

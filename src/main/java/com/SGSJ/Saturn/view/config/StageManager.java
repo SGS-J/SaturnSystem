@@ -4,8 +4,10 @@ import com.SGSJ.Saturn.view.SaturnView;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 
@@ -46,6 +48,10 @@ public class StageManager {
 
     private void showDialogModal(Scene scene, String title) {
         dialogStage = new Stage();
+        try {
+            dialogStage.getIcons().add(new Image(new ClassPathResource("/icon/saturn.png").getURL().toExternalForm()));
+        } catch (IOException ignored) {
+        }
         dialogStage.setTitle(title);
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.initOwner(this.primaryStage);
