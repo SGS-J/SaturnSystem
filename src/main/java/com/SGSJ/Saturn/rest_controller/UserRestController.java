@@ -35,7 +35,7 @@ public class UserRestController {
     @Value("${spring.profiles.active}")
     private String env;
 
-    @CrossOrigin(origins = "https://sgs-j.github.io")
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> addNewUser(@ModelAttribute User user, @RequestParam String mainPhone, @RequestParam String secondaryPhone) {
         ArrayList<String> phoneNumbers = new ArrayList<>();

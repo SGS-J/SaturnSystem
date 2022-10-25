@@ -16,6 +16,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/user/add").allowedOrigins(corsURL);
+        // Only execute it on production mode.
+        // Ejecutarlo solo en modo de producción.
+        // registry.addMapping("/user/add").allowedOrigins(corsURL);
     }
 }

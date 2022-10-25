@@ -34,8 +34,7 @@ public class SaturnSystemApplication extends Application {
 
         try {
             primaryStage.getIcons().add(new Image(new ClassPathResource("/icon/saturn.png").getURL().toExternalForm()));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
 
         try {
