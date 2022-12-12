@@ -14,6 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class SaturnSystemApplication extends Application {
     private static StageManager stageManager;
@@ -24,8 +25,10 @@ public class SaturnSystemApplication extends Application {
     private final int WIDTH = 1000;
     private ConfigurableApplicationContext appContext;
 
+    private LoggerConfig loggerConfig = LoggerConfig.getInstance();
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception{
         hostServices = getHostServices();
 
         primaryStage.setHeight(HEIGHT);
@@ -40,21 +43,27 @@ public class SaturnSystemApplication extends Application {
         try {
             stageManager = new StageManager(primaryStage, new SaturnFXMLLoader(appContext));
 
-            if(isUserLogged()) {
+            if (isUserLogged()) {
                 stageManager.switchScene(SaturnView.APPLICANT_MAIN);
             } else {
                 stageManager.switchScene(SaturnView.LOG_IN);
             }
-        } catch (IOException exception){
-            throw new RuntimeException();
+        } catch (IOException e) {
+            loggerConfig.getLogger().log(Level.SEVERE, loggerConfig.getLogMessage(e.getMessage()));
+            stop();
         }
     }
 
     @Override
-    public void init() throws Exception {
-        SpringApplicationBuilder builder = new SpringApplicationBuilder(MainAppInitializer.class);
-        String[] args = getParameters().getRaw().toArray(String[]::new);
-        appContext = builder.run(args);
+    public void init() throws Exception{
+        try {
+            SpringApplicationBuilder builder = new SpringApplicationBuilder(MainAppInitializer.class);
+            String[] args = getParameters().getRaw().toArray(String[]::new);
+            appContext = builder.run(args);
+        } catch(Exception e) {
+            loggerConfig.getLogger().log(Level.SEVERE, loggerConfig.getLogMessage(e.getMessage()));
+            stop();
+        }
     }
 
     @Override
