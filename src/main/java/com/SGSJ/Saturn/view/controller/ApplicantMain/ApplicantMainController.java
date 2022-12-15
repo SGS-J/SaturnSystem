@@ -52,6 +52,9 @@ public class ApplicantMainController extends GenericController {
     @FXML
     private TableView<UserProperty> applicantTable;
 
+    @FXML
+    private Button updateBtn;
+
 
     private ObservableList<UserProperty> userData = FXCollections.observableArrayList();
 
@@ -68,6 +71,14 @@ public class ApplicantMainController extends GenericController {
         });
 
         initConfiguration.configureTableView(this);
+    }
+
+    @FXML
+    void handleUpdate() {
+        userData.clear();
+        userService.getAll().forEach(user -> {
+            userData.add(new UserProperty(user));
+        });
     }
 
     @FXML

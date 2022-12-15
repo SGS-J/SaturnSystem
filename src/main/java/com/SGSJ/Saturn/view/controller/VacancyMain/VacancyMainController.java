@@ -2,6 +2,7 @@ package com.SGSJ.Saturn.view.controller.VacancyMain;
 
 import com.SGSJ.Saturn.SaturnSystemApplication;
 import com.SGSJ.Saturn.view.config.DataHolder;
+import com.SGSJ.Saturn.view.controller.ApplicantMain.UserProperty;
 import com.SGSJ.Saturn.view.controller.GenericController;
 import com.SGSJ.Saturn.view.controller.VacancyMain.config.VacancyMainConfiguration;
 import com.SGSJ.Saturn.domain.Vacancy.Vacancy;
@@ -43,6 +44,9 @@ public class VacancyMainController extends GenericController {
     @FXML
     private Button vacancyNewBtn;
 
+    @FXML
+    private Button updateBtn;
+
     private ObservableList<VacancyProperty> vacancyData = FXCollections.observableArrayList();
     @Autowired
     private VacancyMainConfiguration initConfiguration;
@@ -58,6 +62,14 @@ public class VacancyMainController extends GenericController {
 
         initConfiguration.configureSlider(this);
         initConfiguration.configureTableView(this);
+    }
+
+    @FXML
+    void handleUpdate() {
+        vacancyData.clear();
+        vacancyService.getAll().forEach(vacancy -> {
+            vacancyData.add(new VacancyProperty(vacancy));
+        });
     }
 
     @FXML

@@ -57,7 +57,7 @@ public class UserRestController {
             File folder = new File(appFile + pdfPath + fileName);
             File finalFile = new File(folder + document.getOriginalFilename());
 
-            String pathFormatted = finalFile.getPath().replace("file:\\", "");
+            String pathFormatted = finalFile.getPath().replace("file:\\", "").replace("%20", " ");
             OutputStream os = new FileOutputStream(pathFormatted);
             os.write(document.getBytes());
 
