@@ -20,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
-    import java.io.IOException;
-        import java.io.OutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 @RestController
@@ -45,11 +45,11 @@ public class UserRestController {
         MultipartFile document = user.getDocumentPDF();
         String documentType = document.getContentType();
         pdfPath = "/dist/resources/CV/";
-        if(!env.equals("prod")) pdfPath = "/libs/dist/resources/CV/";
+        if (!env.equals("prod")) pdfPath = "/libs/dist/resources/CV/";
 
         try {
             assert documentType != null;
-            if(!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
+            if (!documentType.equals("application/pdf")) throw new InvalidFileTypeException();
 
             File jarFile = new File(new ClassPathResource("").getURL().getPath());
             File appFile = jarFile.getParentFile().getParentFile().getParentFile();
@@ -57,7 +57,9 @@ public class UserRestController {
             File folder = new File(appFile + pdfPath + fileName);
             File finalFile = new File(folder + document.getOriginalFilename());
 
-            String pathFormatted = finalFile.getPath().replace("file:\\", "").replace("%20", " ");
+            String pathFormatted = finalFile.getPath()
+                    .replace("file:\\", "")
+                    .replace("%20", " ");
             OutputStream os = new FileOutputStream(pathFormatted);
             os.write(document.getBytes());
 

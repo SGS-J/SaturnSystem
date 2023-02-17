@@ -34,6 +34,7 @@ public class SaturnSystemApplication extends Application {
         primaryStage.setHeight(HEIGHT);
         primaryStage.setWidth(WIDTH);
         primaryStage.setTitle(APP_TITLE);
+        primaryStage.centerOnScreen();
 
         try {
             primaryStage.getIcons().add(new Image(new ClassPathResource("/icon/saturn.png").getURL().toExternalForm()));
